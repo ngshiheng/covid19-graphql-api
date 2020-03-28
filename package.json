@@ -8,7 +8,7 @@
     "private": false,
     "scripts": {
         "start": "nodemon -e ts -x ts-node -r tsconfig-paths/register src/index.ts",
-        "build": "tsc",
+        "build": "tsc --p tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./functions/bundle",
         "eslint": "eslint . --ext ts,gql --ignore-path .eslintignore",
         "eslint:fix:": "eslint --fix . --ext ts,gql --ignore-path .eslintignore",
         "prettier": "prettier \"./**/*.{ts,yml,yaml}\" -l --ignore-path .eslintignore",
@@ -36,6 +36,7 @@
         "prettier": "^2.0.2",
         "ts-node": "^8.8.1",
         "tsconfig-paths": "^3.9.0",
+        "tscpaths": "^0.0.9",
         "typescript": "^3.8.3"
     }
 }
