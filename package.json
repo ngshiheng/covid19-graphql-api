@@ -1,0 +1,41 @@
+{
+    "name": "covid19-graphql-api",
+    "version": "1.0.0",
+    "description": "COVID-19 GraphQL API server",
+    "main": "index.ts",
+    "author": "Jerry Ng",
+    "license": "MIT",
+    "private": false,
+    "scripts": {
+        "start": "nodemon -e ts -x ts-node -r tsconfig-paths/register src/index.ts",
+        "build": "tsc",
+        "eslint": "eslint . --ext ts,gql --ignore-path .eslintignore",
+        "eslint:fix:": "eslint --fix . --ext ts,gql --ignore-path .eslintignore",
+        "prettier": "prettier \"./**/*.{ts,yml,yaml}\" -l --ignore-path .eslintignore",
+        "prettier:fix": "prettier \"./**/*.{ts,yml,yaml}\" --write --ignore-path .eslintignore"
+    },
+    "prettier": {
+        "trailingComma": "all",
+        "tabWidth": 4,
+        "singleQuote": true
+    },
+    "dependencies": {
+        "apollo-server": "^2.11.0",
+        "apollo-server-lambda": "^2.11.0",
+        "graphql": "^14.6.0",
+        "node-fetch": "^2.6.0",
+        "reflect-metadata": "^0.1.13",
+        "type-graphql": "^0.17.6"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^2.25.0",
+        "@typescript-eslint/parser": "^2.25.0",
+        "eslint": "^6.8.0",
+        "eslint-plugin-graphql": "^3.1.1",
+        "nodemon": "^2.0.2",
+        "prettier": "^2.0.2",
+        "ts-node": "^8.8.1",
+        "tsconfig-paths": "^3.9.0",
+        "typescript": "^3.8.3"
+    }
+}

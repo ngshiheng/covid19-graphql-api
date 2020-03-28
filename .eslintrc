@@ -1,0 +1,21 @@
+{
+    "rules": {
+        "@typescript-eslint/class-name-casing": [
+            "error",
+            { "allowUnderscorePrefix": true }
+        ]
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["graphql", "@typescript-eslint"],
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "modules": true
+        }
+    }
+}
