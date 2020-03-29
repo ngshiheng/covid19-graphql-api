@@ -1,7 +1,13 @@
 require('reflect-metadata');
 const { ApolloServer } = require('apollo-server-lambda');
 const { buildSchema } = require('type-graphql');
-const { CountryResolvers } = require('./bundle/resolvers/Result.resolver');
+const { CountryResolvers } = require('./bundle/resolvers/Country.resolver');
+const { StateResolvers } = require('./bundle/resolvers/State.resolver');
+const {
+    DEFAULT_QUERY_COUNTRIES,
+    DEFAULT_QUERY_COUNTRY,
+    DEFAULT_QUERY_STATES,
+} = require('./bundle/utils/consts');
 
 const runHandler = (event, context, handler) =>
     new Promise((resolve, reject) => {
@@ -12,13 +18,32 @@ const runHandler = (event, context, handler) =>
 
 const run = async (event, context) => {
     const schema = await buildSchema({
-        resolvers: [CountryResolvers],
+        resolvers: [CountryResolvers, StateResolvers],
     });
 
     const server = new ApolloServer({
         schema,
-        playground: true,
         introspection: true,
+        playground: {
+            endpoint: '',
+            tabs: [
+                {
+                    endpoint: 'https://covid19-graphql.netlify.com/',
+                    name: 'By all countries',
+                    query: DEFAULT_QUERY_COUNTRIES,
+                },
+                {
+                    endpoint: 'https://covid19-graphql.netlify.com/',
+                    name: 'By a specific country',
+                    query: DEFAULT_QUERY_COUNTRY,
+                },
+                {
+                    endpoint: 'https://covid19-graphql.netlify.com/',
+                    name: 'By states in the US',
+                    query: DEFAULT_QUERY_STATES,
+                },
+            ],
+        },
     });
 
     const handler = server.createHandler({

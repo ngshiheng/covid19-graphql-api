@@ -19,19 +19,19 @@ export const createLocalServer = async () => {
         playground: {
             tabs: [
                 {
-                    endpoint: 'graphql',
+                    endpoint: '',
                     name: 'By all countries',
                     headers: {},
                     query: DEFAULT_QUERY_COUNTRIES,
                 },
                 {
-                    endpoint: 'graphql',
+                    endpoint: '',
                     name: 'By a specific country',
                     headers: {},
                     query: DEFAULT_QUERY_COUNTRY,
                 },
                 {
-                    endpoint: 'graphql',
+                    endpoint: '',
                     name: 'By states in the US',
                     headers: {},
                     query: DEFAULT_QUERY_STATES,
