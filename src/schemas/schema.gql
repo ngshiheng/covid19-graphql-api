@@ -32,8 +32,8 @@ type Result {
   recovered: Float!
   active: Float!
   critical: Float!
-  casesPerOneMillion: Float!
-  deathsPerOneMillion: Float!
+  casesPerOneMillion: Float
+  deathsPerOneMillion: Float
 }
 
 type State {

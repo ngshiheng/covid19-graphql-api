@@ -38,7 +38,7 @@
 
 ## Tryout on Netlify
 
-WIP
+https://covid19-graphql.netlify.com/
 
 ### Example queries
 
@@ -71,7 +71,7 @@ Returns data of all countries that has COVID-19
 }
 ```
 
-Returns data of a specific country.
+Returns data of a specific country
 
 ```graphql
 {

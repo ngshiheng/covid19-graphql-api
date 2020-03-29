@@ -1,0 +1,42 @@
+import { Country, State } from '@entities/Country.entity';
+import { DATA_SOURCE_URL } from '@utils/consts';
+import fetch from 'node-fetch';
+import 'reflect-metadata';
+import { Query, Resolver } from 'type-graphql';
+
+@Resolver(Country)
+export class StateResolvers {
+    @Query(() => [State])
+    async states() {
+        try {
+            const result = [];
+            const response = await fetch(`${DATA_SOURCE_URL}/states`);
+            if (response.status !== 200) {
+                throw new Error('States data not found, please try again');
+            }
+            const data = await response.json();
+            for (const {
+                state,
+                cases,
+                todayCases,
+                deaths,
+                todayDeaths,
+                active,
+            } of data) {
+                result.push({
+                    state,
+                    result: {
+                        cases,
+                        todayCases,
+                        deaths,
+                        todayDeaths,
+                        active,
+                    },
+                });
+            }
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
+}

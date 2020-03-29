@@ -1,4 +1,4 @@
-import { Country, State } from '@entities/Result.entity';
+import { Country, State } from '@entities/Country.entity';
 import { DATA_SOURCE_URL } from '@utils/consts';
 import fetch from 'node-fetch';
 import 'reflect-metadata';

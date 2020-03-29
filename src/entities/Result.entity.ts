@@ -1,26 +1,5 @@
 import 'reflect-metadata';
-import { Field, Float, ID, ObjectType } from 'type-graphql';
-
-@ObjectType()
-export class CountryInfo {
-    @Field(() => ID, { nullable: true })
-    _id: string;
-
-    @Field(() => Float, { nullable: true })
-    lat: number;
-
-    @Field(() => Float)
-    long: number;
-
-    @Field()
-    flag: string;
-
-    @Field({ nullable: true })
-    iso3: string;
-
-    @Field({ nullable: true })
-    iso2: string;
-}
+import { Field, ObjectType } from 'type-graphql';
 
 @ObjectType()
 export class Result {
@@ -45,30 +24,9 @@ export class Result {
     @Field()
     critical?: number;
 
-    @Field()
+    @Field({ nullable: true })
     casesPerOneMillion?: number;
 
-    @Field()
+    @Field({ nullable: true })
     deathsPerOneMillion?: number;
-}
-
-@ObjectType()
-export class Country {
-    @Field()
-    country: string;
-
-    @Field()
-    countryInfo: CountryInfo;
-
-    @Field(() => Result)
-    result: Result;
-}
-
-@ObjectType()
-export class State {
-    @Field()
-    state: string;
-
-    @Field(() => Result)
-    result: Result;
 }
