@@ -70,7 +70,7 @@ export const DEFAULT_QUERY_STATES = `# Returns data by states in the United Stat
 }
 `;
 
-export const DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS = `# Returns data sort by country with most deaths
+export const DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS = `# Returns data sort by country with the most deaths
 {
     countries(sortBy: deaths) {
         country
@@ -81,7 +81,7 @@ export const DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS = `# Returns data sort by co
 }
 `;
 
-export const DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES = `# Returns data sort by country with most cases
+export const DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES = `# Returns data sort by country with the most cases
 {
     countries(sortBy: cases) {
         country

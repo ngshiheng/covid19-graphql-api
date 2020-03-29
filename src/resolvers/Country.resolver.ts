@@ -6,7 +6,10 @@ import { Arg, Args, Query, Resolver } from 'type-graphql';
 
 @Resolver(Country)
 export class CountryResolvers {
-    @Query(() => Country)
+    @Query(() => Country, {
+        description:
+            "Get the same data from the 'countries' query, but filter down to a specific country",
+    })
     async country(@Arg('name') name: string): Promise<Country> {
         try {
             const response = await fetch(
@@ -48,7 +51,10 @@ export class CountryResolvers {
         }
     }
 
-    @Query(() => [Country])
+    @Query(() => [Country], {
+        description:
+            'Returns a JSON array with an element for each country that has stats available. This includes iso codes, lat/long, a link to the country flag, cases, new cases, deaths, new deaths, recovered, active cases, critical cases, and cases/deaths per one million people',
+    })
     async countries(@Args() { sortBy }: SortInput): Promise<Country[]> {
         try {
             const result = [];

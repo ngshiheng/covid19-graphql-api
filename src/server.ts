@@ -14,7 +14,7 @@ export const createLocalServer = async () => {
     const schema = await buildSchema({
         resolvers: [__dirname + '/resolvers/**/*.{ts,js}'],
         emitSchemaFile: resolve(__dirname, 'schemas/schema.gql'),
-        validate: false,
+        validate: true,
     });
     return new ApolloServer({
         schema,

@@ -9,42 +9,57 @@ import {
     registerEnumType,
 } from 'type-graphql';
 
-@ObjectType()
+@ObjectType({ description: 'Contains the information of the country' })
 export class CountryInfo {
-    @Field(() => ID, { nullable: true })
+    @Field(() => ID, {
+        nullable: true,
+        description: 'Unique ID of the country from the dataset',
+    })
     _id: string;
 
-    @Field(() => Float, { nullable: true })
+    @Field(() => Float, { description: 'Latitude of the country' })
     lat: number;
 
-    @Field(() => Float)
+    @Field(() => Float, { description: 'Longitude of the country' })
     long: number;
 
-    @Field()
+    @Field({ description: 'Image link to the country flag' })
     flag: string;
 
-    @Field({ nullable: true })
+    @Field({
+        nullable: true,
+        description: "Country slug by its ISO3 like 'USA'",
+    })
     iso3: string;
 
-    @Field({ nullable: true })
+    @Field({
+        nullable: true,
+        description: "Country slug by its ISO2 like 'US'",
+    })
     iso2: string;
 }
 
-@ObjectType()
+@ObjectType({ description: 'Country object' })
 export class Country {
-    @Field()
+    @Field({ description: 'Name of the country' })
     country: string;
 
-    @Field()
+    @Field({ description: 'Contains the information of the country ' })
     countryInfo: CountryInfo;
 
-    @Field(() => Result)
+    @Field(() => Result, {
+        description: 'Contains the results of the country',
+    })
     result: Result;
 }
 
 @ArgsType()
 export class SortInput {
-    @Field(() => ResultParametersSortInput, { nullable: true })
+    @Field(() => ResultParametersSortInput, {
+        nullable: true,
+        description:
+            'Sort parameters for sorting response from countries query. Sorted by the highest number first',
+    })
     sortBy?: ResultParametersSortInput;
 }
 
@@ -62,4 +77,5 @@ export enum ResultParametersSortInput {
 
 registerEnumType(ResultParametersSortInput, {
     name: 'ResultParametersSortInput',
+    description: 'Sorting parameters',
 });

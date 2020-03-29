@@ -6,7 +6,10 @@ import { Query, Resolver } from 'type-graphql';
 
 @Resolver(State)
 export class StateResolvers {
-    @Query(() => [State])
+    @Query(() => [State], {
+        description:
+            'Get stats on United States of America States with COVID-19, including cases, new cases, deaths, new deaths, and active cases',
+    })
     async states(): Promise<State[]> {
         try {
             const result = [];

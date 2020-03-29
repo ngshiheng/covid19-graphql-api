@@ -3,39 +3,96 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+"""Country object"""
 type Country {
+  """Name of the country"""
   country: String!
+
+  """Contains the information of the country """
   countryInfo: CountryInfo!
+
+  """Contains the results of the country"""
   result: Result!
 }
 
+"""Contains the information of the country"""
 type CountryInfo {
+  """Unique ID of the country from the dataset"""
   _id: ID
-  lat: Float
+
+  """Latitude of the country"""
+  lat: Float!
+
+  """Longitude of the country"""
   long: Float!
+
+  """Image link to the country flag"""
   flag: String!
+
+  """Country slug by its ISO3 like 'USA'"""
   iso3: String
+
+  """Country slug by its ISO2 like 'US'"""
   iso2: String
 }
 
 type Query {
+  """
+  Get the same data from the 'countries' query, but filter down to a specific country
+  """
   country(name: String!): Country!
-  countries(sortBy: ResultParametersSortInput): [Country!]!
+
+  """
+  Returns a JSON array with an element for each country that has stats
+  available. This includes iso codes, lat/long, a link to the country flag,
+  cases, new cases, deaths, new deaths, recovered, active cases, critical cases,
+  and cases/deaths per one million people
+  """
+  countries(
+    """
+    Sort parameters for sorting response from countries query. Sorted by the highest number first
+    """
+    sortBy: ResultParametersSortInput
+  ): [Country!]!
+
+  """
+  Get stats on United States of America States with COVID-19, including cases,
+  new cases, deaths, new deaths, and active cases
+  """
   states: [State!]!
 }
 
+"""Result object"""
 type Result {
+  """Total number of confirmed cases"""
   cases: Float!
+
+  """Total number of confirmed cases reported today"""
   todayCases: Float!
+
+  """Total number of reported deaths"""
   deaths: Float!
+
+  """Total number of reported deaths today"""
   todayDeaths: Float!
+
+  """Total number of reported recovery"""
   recovered: Float
+
+  """Total number of active cases"""
   active: Float!
+
+  """Total number of critical cases"""
   critical: Float
+
+  """Cases per one million"""
   casesPerOneMillion: Float
+
+  """Deaths per one million"""
   deathsPerOneMillion: Float
 }
 
+"""Sorting parameters"""
 enum ResultParametersSortInput {
   cases
   todayCases
@@ -48,7 +105,11 @@ enum ResultParametersSortInput {
   deathsPerOneMillion
 }
 
+"""State object"""
 type State {
+  """Name of the state"""
   state: String!
+
+  """Contains the result of the state"""
   result: Result!
 }
