@@ -7,7 +7,11 @@ const {
     DEFAULT_QUERY_COUNTRIES,
     DEFAULT_QUERY_COUNTRY,
     DEFAULT_QUERY_STATES,
+    DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES,
+    DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS,
 } = require('./bundle/utils/consts');
+
+const endpoint = 'https://covid19-graphql.netlify.com/';
 
 const runHandler = (event, context, handler) =>
     new Promise((resolve, reject) => {
@@ -25,22 +29,31 @@ const run = async (event, context) => {
         schema,
         introspection: true,
         playground: {
-            endpoint: '',
             tabs: [
                 {
-                    endpoint: 'https://covid19-graphql.netlify.com/',
+                    endpoint,
                     name: 'By all countries',
                     query: DEFAULT_QUERY_COUNTRIES,
                 },
                 {
-                    endpoint: 'https://covid19-graphql.netlify.com/',
+                    endpoint,
                     name: 'By a specific country',
                     query: DEFAULT_QUERY_COUNTRY,
                 },
                 {
-                    endpoint: 'https://covid19-graphql.netlify.com/',
+                    endpoint,
                     name: 'By states in the US',
                     query: DEFAULT_QUERY_STATES,
+                },
+                {
+                    endpoint,
+                    name: 'Sort by country with most cases',
+                    query: DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES,
+                },
+                {
+                    endpoint,
+                    name: 'Sort by country with most deaths',
+                    query: DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS,
                 },
             ],
         },
