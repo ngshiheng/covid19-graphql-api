@@ -1,13 +1,13 @@
-import { Country, State } from '@entities/Country.entity';
+import { State } from '@entities/State.entity';
 import { DATA_SOURCE_URL } from '@utils/consts';
 import fetch from 'node-fetch';
 import 'reflect-metadata';
 import { Query, Resolver } from 'type-graphql';
 
-@Resolver(Country)
+@Resolver(State)
 export class StateResolvers {
     @Query(() => [State])
-    async states() {
+    async states(): Promise<State[]> {
         try {
             const result = [];
             const response = await fetch(`${DATA_SOURCE_URL}/states`);

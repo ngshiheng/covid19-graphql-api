@@ -27,6 +27,7 @@
 -   [graphql](https://graphql.org/)
 -   [apollo-server-lambda](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-lambda)
 -   [typescript](https://www.typescriptlang.org/)
+-   [type-graphql](https://typegraphql.com/)
 
 ## Local Usage
 
@@ -36,67 +37,18 @@
 
 3. Start making queries!
 
-## Tryout on Netlify
+## Try it out on Netlify
 
 https://covid19-graphql.netlify.com/
 
-### Example queries
+## Contributing
 
-Returns data of all countries that has COVID-19
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change
 
-```graphql
-{
-    countries {
-        country
-        countryInfo {
-            _id
-            lat
-            long
-            flag
-            iso3
-            iso2
-        }
-        result {
-            cases
-            todayCases
-            deaths
-            todayDeaths
-            recovered
-            active
-            critical
-            casesPerOneMillion
-            deathsPerOneMillion
-        }
-    }
-}
-```
+### Steps
 
-Returns data of a specific country
-
-```graphql
-{
-    country(name: "malaysia") {
-        country
-        result {
-            cases
-            deaths
-            todayCases
-            todayDeaths
-        }
-    }
-}
-```
-
-Returns all United States of America and their Corona data
-
-```graphql
-{
-    states {
-        state
-        result {
-            cases
-            deaths
-        }
-    }
-}
-```
+1. Fork this
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request

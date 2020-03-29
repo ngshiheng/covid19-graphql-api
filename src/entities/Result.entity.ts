@@ -15,13 +15,13 @@ export class Result {
     @Field()
     todayDeaths: number;
 
-    @Field()
+    @Field({ nullable: true })
     recovered: number;
 
     @Field()
     active: number;
 
-    @Field()
+    @Field({ nullable: true })
     critical?: number;
 
     @Field({ nullable: true })

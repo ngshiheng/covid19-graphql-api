@@ -1,7 +1,7 @@
 // https://github.com/novelcovid/api
 export const DATA_SOURCE_URL = 'https://corona.lmao.ninja';
 
-export const DEFAULT_QUERY_COUNTRIES = `# To return data of all countries that has COVID-19:
+export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has COVID-19
 {
     countries {
         country
@@ -55,7 +55,7 @@ export const DEFAULT_QUERY_COUNTRY = `# Returns data of a specific country
 }
 `;
 
-export const DEFAULT_QUERY_STATES = `# Returns all United States of America and their Corona data 
+export const DEFAULT_QUERY_STATES = `# Returns data of all United States of America
 {
     states {
         state

@@ -29,9 +29,9 @@ type Result {
   todayCases: Float!
   deaths: Float!
   todayDeaths: Float!
-  recovered: Float!
+  recovered: Float
   active: Float!
-  critical: Float!
+  critical: Float
   casesPerOneMillion: Float
   deathsPerOneMillion: Float
 }

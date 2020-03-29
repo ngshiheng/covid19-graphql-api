@@ -25,13 +25,11 @@ export const createLocalServer = async () => {
                     query: DEFAULT_QUERY_COUNTRIES,
                 },
                 {
-                    endpoint: '',
                     name: 'By a specific country',
                     headers: {},
                     query: DEFAULT_QUERY_COUNTRY,
                 },
                 {
-                    endpoint: '',
                     name: 'By states in the US',
                     headers: {},
                     query: DEFAULT_QUERY_STATES,
