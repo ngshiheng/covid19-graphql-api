@@ -1,4 +1,3 @@
-// https://github.com/novelcovid/api
 export const DATA_SOURCE_URL = 'https://corona.lmao.ninja';
 
 export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has COVID-19
@@ -29,6 +28,7 @@ export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has
 `;
 
 export const DEFAULT_QUERY_COUNTRY = `# Returns data of a specific country
+# Note that 'name:"<argument>"' argument could be: <country> || <_id> || <iso2> || <iso3>
 {
     country(name:"Malaysia") {
         country
@@ -37,8 +37,8 @@ export const DEFAULT_QUERY_COUNTRY = `# Returns data of a specific country
             lat
             long
             flag
-            iso3
             iso2
+            iso3
         }
         result {
             cases
@@ -55,7 +55,7 @@ export const DEFAULT_QUERY_COUNTRY = `# Returns data of a specific country
 }
 `;
 
-export const DEFAULT_QUERY_STATES = `# Returns data of all United States of America
+export const DEFAULT_QUERY_STATES = `# Returns data by states in the United States of America
 {
     states {
         state
@@ -65,6 +65,28 @@ export const DEFAULT_QUERY_STATES = `# Returns data of all United States of Amer
             deaths
             todayDeaths
             active
+        }
+    }
+}
+`;
+
+export const DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS = `# Returns data sort by country with most deaths
+{
+    countries(sortBy: deaths) {
+        country
+        result {
+            deaths
+        }
+    }
+}
+`;
+
+export const DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES = `# Returns data sort by country with most cases
+{
+    countries(sortBy: cases) {
+        country
+        result {
+            cases
         }
     }
 }

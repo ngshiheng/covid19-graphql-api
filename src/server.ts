@@ -1,6 +1,8 @@
 import {
     DEFAULT_QUERY_COUNTRIES,
     DEFAULT_QUERY_COUNTRY,
+    DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES,
+    DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS,
     DEFAULT_QUERY_STATES,
 } from '@utils/consts';
 import { ApolloServer } from 'apollo-server';
@@ -12,6 +14,7 @@ export const createLocalServer = async () => {
     const schema = await buildSchema({
         resolvers: [__dirname + '/resolvers/**/*.{ts,js}'],
         emitSchemaFile: resolve(__dirname, 'schemas/schema.gql'),
+        validate: false,
     });
     return new ApolloServer({
         schema,
@@ -33,6 +36,16 @@ export const createLocalServer = async () => {
                     name: 'By states in the US',
                     headers: {},
                     query: DEFAULT_QUERY_STATES,
+                },
+                {
+                    name: 'Sort by country with most cases',
+                    headers: {},
+                    query: DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES,
+                },
+                {
+                    name: 'Sort by country with most deaths',
+                    headers: {},
+                    query: DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS,
                 },
             ],
         },

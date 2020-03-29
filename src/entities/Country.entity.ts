@@ -1,6 +1,13 @@
 import { Result } from '@entities/Result.entity';
 import 'reflect-metadata';
-import { Field, Float, ID, ObjectType } from 'type-graphql';
+import {
+    ArgsType,
+    Field,
+    Float,
+    ID,
+    ObjectType,
+    registerEnumType,
+} from 'type-graphql';
 
 @ObjectType()
 export class CountryInfo {
@@ -34,3 +41,25 @@ export class Country {
     @Field(() => Result)
     result: Result;
 }
+
+@ArgsType()
+export class SortInput {
+    @Field(() => ResultParametersSortInput, { nullable: true })
+    sortBy?: ResultParametersSortInput;
+}
+
+export enum ResultParametersSortInput {
+    cases = 'cases',
+    todayCases = 'todayCases',
+    deaths = 'deaths',
+    todayDeaths = 'todayDeaths',
+    recovered = 'recovered',
+    active = 'active',
+    critical = 'critical',
+    casesPerOneMillion = 'casesPerOneMillion',
+    deathsPerOneMillion = 'deathsPerOneMillion',
+}
+
+registerEnumType(ResultParametersSortInput, {
+    name: 'ResultParametersSortInput',
+});

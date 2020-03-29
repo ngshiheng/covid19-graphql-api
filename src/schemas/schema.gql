@@ -20,7 +20,7 @@ type CountryInfo {
 
 type Query {
   country(name: String!): Country!
-  countries: [Country!]!
+  countries(sortBy: ResultParametersSortInput): [Country!]!
   states: [State!]!
 }
 
@@ -34,6 +34,18 @@ type Result {
   critical: Float
   casesPerOneMillion: Float
   deathsPerOneMillion: Float
+}
+
+enum ResultParametersSortInput {
+  cases
+  todayCases
+  deaths
+  todayDeaths
+  recovered
+  active
+  critical
+  casesPerOneMillion
+  deathsPerOneMillion
 }
 
 type State {

@@ -1,8 +1,8 @@
-import { Country } from '@entities/Country.entity';
+import { Country, SortInput } from '@entities/Country.entity';
 import { DATA_SOURCE_URL } from '@utils/consts';
 import fetch from 'node-fetch';
 import 'reflect-metadata';
-import { Arg, Query, Resolver } from 'type-graphql';
+import { Arg, Args, Query, Resolver } from 'type-graphql';
 
 @Resolver(Country)
 export class CountryResolvers {
@@ -49,10 +49,12 @@ export class CountryResolvers {
     }
 
     @Query(() => [Country])
-    async countries(): Promise<Country[]> {
+    async countries(@Args() { sortBy }: SortInput): Promise<Country[]> {
         try {
             const result = [];
-            const response = await fetch(`${DATA_SOURCE_URL}/countries/`);
+            const response = await fetch(
+                `${DATA_SOURCE_URL}/countries?sort=${sortBy}`,
+            );
             if (response.status !== 200) {
                 throw new Error(
                     'An unknown error has occurred, please try again',
