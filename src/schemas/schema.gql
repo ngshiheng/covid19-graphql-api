@@ -36,7 +36,17 @@ type CountryInfo {
   iso2: String
 }
 
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
 type Query {
+  """
+  Get global stats: cases, deaths, recovered, time last updated, and active cases
+  """
+  globalTotal: Result!
+
   """
   Get the same data from the 'countries' query, but filter down to a specific country
   """
@@ -54,6 +64,9 @@ type Query {
     """
     sortBy: ResultParametersSortInput
   ): [Country!]!
+
+  """Get cases, new cases, deaths, new deaths, and active cases for a state"""
+  state(name: String!): State!
 
   """
   Get stats on United States of America States with COVID-19, including cases,
@@ -90,6 +103,12 @@ type Result {
 
   """Deaths per one million"""
   deathsPerOneMillion: Float
+
+  """Last updated date"""
+  updated: DateTime
+
+  """Total number of affected countries"""
+  affectedCountries: Float
 }
 
 """Sorting parameters"""

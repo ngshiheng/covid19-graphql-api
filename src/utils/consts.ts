@@ -22,6 +22,7 @@ export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has
             critical
             casesPerOneMillion
             deathsPerOneMillion
+            updated
         }
     }
 }
@@ -50,6 +51,7 @@ export const DEFAULT_QUERY_COUNTRY = `# Returns data of a specific country
             critical
             casesPerOneMillion
             deathsPerOneMillion
+            updated
         }
     }
 }

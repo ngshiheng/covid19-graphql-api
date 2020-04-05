@@ -29,4 +29,13 @@ export class Result {
 
     @Field({ nullable: true, description: 'Deaths per one million' })
     deathsPerOneMillion?: number;
+
+    @Field({ nullable: true, description: 'Last updated date' })
+    updated?: Date;
+
+    @Field({
+        nullable: true,
+        description: 'Total number of affected countries',
+    })
+    affectedCountries?: number;
 }

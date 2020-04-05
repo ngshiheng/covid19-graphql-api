@@ -1,4 +1,5 @@
 import { Country, SortInput } from '@entities/Country.entity';
+import { Result } from '@entities/Result.entity';
 import { DATA_SOURCE_URL } from '@utils/consts';
 import fetch from 'node-fetch';
 import 'reflect-metadata';
@@ -6,6 +7,25 @@ import { Arg, Args, Query, Resolver } from 'type-graphql';
 
 @Resolver(Country)
 export class CountryResolvers {
+    @Query(() => Result, {
+        description:
+            'Get global stats: cases, deaths, recovered, time last updated, and active cases',
+    })
+    async globalTotal(): Promise<Result> {
+        try {
+            const response = await fetch(`${DATA_SOURCE_URL}/all`);
+            if (response.status !== 200) {
+                throw new Error(
+                    'An unknown error has occurred, please try again later',
+                );
+            }
+            const { updated, ...data } = await response.json();
+            return { updated: new Date(updated), ...data };
+        } catch (error) {
+            throw error;
+        }
+    }
+
     @Query(() => Country, {
         description:
             "Get the same data from the 'countries' query, but filter down to a specific country",
@@ -21,29 +41,15 @@ export class CountryResolvers {
             const {
                 country,
                 countryInfo,
-                cases,
-                todayCases,
-                deaths,
-                todayDeaths,
-                recovered,
-                active,
-                critical,
-                casesPerOneMillion,
-                deathsPerOneMillion,
+                updated,
+                ...data
             } = await response.json();
             return {
                 country,
                 countryInfo,
                 result: {
-                    cases,
-                    todayCases,
-                    deaths,
-                    todayDeaths,
-                    recovered,
-                    active,
-                    critical,
-                    casesPerOneMillion,
-                    deathsPerOneMillion,
+                    updated: new Date(updated),
+                    ...data,
                 },
             };
         } catch (error) {
@@ -63,36 +69,17 @@ export class CountryResolvers {
             );
             if (response.status !== 200) {
                 throw new Error(
-                    'An unknown error has occurred, please try again',
+                    'An unknown error has occurred, please try again later',
                 );
             }
-            const data = await response.json();
-            for (const {
-                country,
-                countryInfo,
-                cases,
-                todayCases,
-                deaths,
-                todayDeaths,
-                recovered,
-                active,
-                critical,
-                casesPerOneMillion,
-                deathsPerOneMillion,
-            } of data) {
+            const results = await response.json();
+            for (const { country, countryInfo, updated, ...data } of results) {
                 result.push({
                     country,
                     countryInfo,
                     result: {
-                        cases,
-                        todayCases,
-                        deaths,
-                        todayDeaths,
-                        recovered,
-                        active,
-                        critical,
-                        casesPerOneMillion,
-                        deathsPerOneMillion,
+                        updated: new Date(updated),
+                        ...data,
                     },
                 });
             }
