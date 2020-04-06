@@ -8,5 +8,5 @@ export class State {
     state: string;
 
     @Field(() => Result, { description: 'Contains the result of the state' })
-    result: Partial<Result>;
+    result: Result;
 }

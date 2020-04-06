@@ -13,6 +13,7 @@ export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has
             iso2
         }
         result {
+            tests
             cases
             todayCases
             deaths
@@ -22,6 +23,7 @@ export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has
             critical
             casesPerOneMillion
             deathsPerOneMillion
+            testsPerOneMillion
             updated
         }
     }
@@ -42,6 +44,7 @@ export const DEFAULT_QUERY_COUNTRY = `# Returns data of a specific country
             iso3
         }
         result {
+            tests
             cases
             todayCases
             deaths
@@ -51,6 +54,7 @@ export const DEFAULT_QUERY_COUNTRY = `# Returns data of a specific country
             critical
             casesPerOneMillion
             deathsPerOneMillion
+            testsPerOneMillion
             updated
         }
     }

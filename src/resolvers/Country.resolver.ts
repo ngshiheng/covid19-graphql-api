@@ -88,4 +88,36 @@ export class CountryResolvers {
             throw error;
         }
     }
+
+    @Query(() => [Country], {
+        description:
+            'Returns a JSON array with an element for each country that has stats available. This includes iso codes, lat/long, a link to the country flag, cases, new cases, deaths, new deaths, recovered, active cases, critical cases, and cases/deaths per one million people',
+    })
+    async yesterday(@Args() { sortBy }: SortInput): Promise<Country[]> {
+        try {
+            const result = [];
+            const response = await fetch(
+                `${DATA_SOURCE_URL}/countries?sort=${sortBy}`,
+            );
+            if (response.status !== 200) {
+                throw new Error(
+                    'An unknown error has occurred, please try again later',
+                );
+            }
+            const results = await response.json();
+            for (const { country, countryInfo, updated, ...data } of results) {
+                result.push({
+                    country,
+                    countryInfo,
+                    result: {
+                        updated: new Date(updated),
+                        ...data,
+                    },
+                });
+            }
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
 }

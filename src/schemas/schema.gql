@@ -65,6 +65,19 @@ type Query {
     sortBy: ResultParametersSortInput
   ): [Country!]!
 
+  """
+  Returns a JSON array with an element for each country that has stats
+  available. This includes iso codes, lat/long, a link to the country flag,
+  cases, new cases, deaths, new deaths, recovered, active cases, critical cases,
+  and cases/deaths per one million people
+  """
+  yesterday(
+    """
+    Sort parameters for sorting response from countries query. Sorted by the highest number first
+    """
+    sortBy: ResultParametersSortInput
+  ): [Country!]!
+
   """Get cases, new cases, deaths, new deaths, and active cases for a state"""
   state(name: String!): State!
 
@@ -78,25 +91,28 @@ type Query {
 """Result object"""
 type Result {
   """Total number of confirmed cases"""
-  cases: Float!
+  cases: Int!
 
   """Total number of confirmed cases reported today"""
-  todayCases: Float!
+  todayCases: Int!
 
   """Total number of reported deaths"""
-  deaths: Float!
+  deaths: Int!
 
   """Total number of reported deaths today"""
-  todayDeaths: Float!
+  todayDeaths: Int!
 
   """Total number of reported recovery"""
-  recovered: Float
+  recovered: Int
 
   """Total number of active cases"""
-  active: Float!
+  active: Int!
 
   """Total number of critical cases"""
-  critical: Float
+  critical: Int
+
+  """Total number of tests conducted"""
+  tests: Int
 
   """Cases per one million"""
   casesPerOneMillion: Float
@@ -104,11 +120,14 @@ type Result {
   """Deaths per one million"""
   deathsPerOneMillion: Float
 
+  """Tests per one million"""
+  testsPerOneMillion: Float
+
   """Last updated date"""
   updated: DateTime
 
   """Total number of affected countries"""
-  affectedCountries: Float
+  affectedCountries: Int
 }
 
 """Sorting parameters"""
