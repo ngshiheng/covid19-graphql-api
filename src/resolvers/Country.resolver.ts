@@ -13,7 +13,7 @@ export class CountryResolvers {
         description:
             'Get global stats: cases, deaths, recovered, time last updated, and active cases',
     })
-    async globalTotal(@Ctx() { covid }: Context): Promise<Partial<Result>> {
+    async globalTotal(@Ctx() { covid }: Context) {
         try {
             const { updated, ...data } = await covid.all();
             return { updated: new Date(updated), ...data };
@@ -26,20 +26,17 @@ export class CountryResolvers {
         description:
             "Get the same data from the 'countries' query, but filter down to a specific country",
     })
-    async country(@Arg('name') name: string): Promise<Country> {
+    async country(
+        @Ctx() { covid }: Context,
+        @Arg('name') name: string,
+    ): Promise<Country> {
         try {
-            const response = await fetch(
-                `${DATA_SOURCE_URL}/countries/${name}`,
-            );
-            if (response.status !== 200) {
-                throw new Error('Country data not found, please try again');
-            }
             const {
                 country,
                 countryInfo,
                 updated,
                 ...data
-            } = await response.json();
+            }: any = await covid.countries(name); // TODO: Update 'any' after API library fixes this
             return {
                 country,
                 countryInfo,

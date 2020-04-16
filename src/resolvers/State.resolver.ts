@@ -2,7 +2,8 @@ import { State } from '@entities/State.entity';
 import { DATA_SOURCE_URL } from '@utils/consts';
 import fetch from 'node-fetch';
 import 'reflect-metadata';
-import { Arg, Query, Resolver } from 'type-graphql';
+import { Context } from 'server';
+import { Arg, Ctx, Query, Resolver } from 'type-graphql';
 
 @Resolver(State)
 export class StateResolvers {
@@ -27,14 +28,10 @@ export class StateResolvers {
         description:
             'Get stats on United States of America States with COVID-19, including cases, new cases, deaths, new deaths, and active cases',
     })
-    async states(): Promise<State[]> {
+    async states(@Ctx() { covid }: Context) {
         try {
             const result = [];
-            const response = await fetch(`${DATA_SOURCE_URL}/states`);
-            if (response.status !== 200) {
-                throw new Error('States data not found, please try again');
-            }
-            const results = await response.json();
+            const results = await covid.states();
             for (const { state, ...data } of results) {
                 result.push({
                     state,

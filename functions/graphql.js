@@ -6,9 +6,11 @@ const { StateResolvers } = require('./bundle/resolvers/State.resolver');
 const {
     DEFAULT_QUERY_COUNTRIES,
     DEFAULT_QUERY_COUNTRY,
+    DEFAULT_QUERY_STATE,
     DEFAULT_QUERY_STATES,
     DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES,
     DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS,
+    DEFAULT_QUERY_GLOBAL,
 } = require('./bundle/utils/consts');
 
 const endpoint = 'https://covid19-graphql.netlify.app/';
@@ -46,6 +48,11 @@ const run = async (event, context) => {
                     query: DEFAULT_QUERY_STATES,
                 },
                 {
+                    name: 'By a specific states in the US',
+                    headers: {},
+                    query: DEFAULT_QUERY_STATE,
+                },
+                {
                     endpoint,
                     name: 'Sort by country with most cases',
                     query: DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES,
@@ -54,6 +61,11 @@ const run = async (event, context) => {
                     endpoint,
                     name: 'Sort by country with most deaths',
                     query: DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS,
+                },
+                {
+                    name: 'By global total',
+                    headers: {},
+                    query: DEFAULT_QUERY_GLOBAL,
                 },
             ],
         },

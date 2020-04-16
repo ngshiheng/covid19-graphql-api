@@ -66,11 +66,30 @@ export const DEFAULT_QUERY_STATES = `# Returns data by states in the United Stat
     states {
         state
         result {
+            active
+            tests
             cases
             todayCases
             deaths
             todayDeaths
+            testsPerOneMillion
+        }
+    }
+}
+`;
+
+export const DEFAULT_QUERY_STATE = `# Returns data of a specific state in the United States of America
+{
+    state(name: "New York") {
+        state
+        result {
             active
+            tests
+            testsPerOneMillion
+            cases
+            todayCases
+            deaths
+            todayDeaths
         }
     }
 }
@@ -81,7 +100,11 @@ export const DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS = `# Returns data sort by co
     countries(sortBy: deaths) {
         country
         result {
+            active
             deaths
+            todayDeaths
+            deathsPerOneMillion
+            updated
         }
     }
 }
@@ -92,8 +115,32 @@ export const DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES = `# Returns data sort by cou
     countries(sortBy: cases) {
         country
         result {
+            active
             cases
+            todayCases
+            deathsPerOneMillion
+            updated
         }
+    }
+}
+`;
+
+export const DEFAULT_QUERY_GLOBAL = `# Returns global data
+{
+    globalTotal {
+        affectedCountries
+        tests
+        cases
+        todayCases
+        deaths
+        todayDeaths
+        recovered
+        active
+        critical
+        casesPerOneMillion
+        deathsPerOneMillion
+        testsPerOneMillion
+        updated
     }
 }
 `;
