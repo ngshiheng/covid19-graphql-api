@@ -48,6 +48,7 @@ const run = async (event, context) => {
                     query: DEFAULT_QUERY_STATES,
                 },
                 {
+                    endpoint,
                     name: 'By a specific states in the US',
                     headers: {},
                     query: DEFAULT_QUERY_STATE,
@@ -63,6 +64,7 @@ const run = async (event, context) => {
                     query: DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS,
                 },
                 {
+                    endpoint,
                     name: 'By global total',
                     headers: {},
                     query: DEFAULT_QUERY_GLOBAL,
