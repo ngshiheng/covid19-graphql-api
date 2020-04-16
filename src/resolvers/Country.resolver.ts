@@ -1,9 +1,11 @@
 import { Country, SortInput } from '@entities/Country.entity';
 import { Result } from '@entities/Result.entity';
 import { DATA_SOURCE_URL } from '@utils/consts';
+import { ApolloError } from 'apollo-server';
 import fetch from 'node-fetch';
 import 'reflect-metadata';
-import { Arg, Args, Query, Resolver } from 'type-graphql';
+import { Context } from 'server';
+import { Arg, Args, Ctx, Query, Resolver } from 'type-graphql';
 
 @Resolver(Country)
 export class CountryResolvers {
@@ -11,18 +13,12 @@ export class CountryResolvers {
         description:
             'Get global stats: cases, deaths, recovered, time last updated, and active cases',
     })
-    async globalTotal(): Promise<Result> {
+    async globalTotal(@Ctx() { covid }: Context): Promise<Partial<Result>> {
         try {
-            const response = await fetch(`${DATA_SOURCE_URL}/all`);
-            if (response.status !== 200) {
-                throw new Error(
-                    'An unknown error has occurred, please try again later',
-                );
-            }
-            const { updated, ...data } = await response.json();
+            const { updated, ...data } = await covid.all();
             return { updated: new Date(updated), ...data };
         } catch (error) {
-            throw error;
+            throw new ApolloError(error);
         }
     }
 

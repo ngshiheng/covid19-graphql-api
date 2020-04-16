@@ -11,7 +11,7 @@ const {
     DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS,
 } = require('./bundle/utils/consts');
 
-const endpoint = 'https://covid19-graphql.netlify.com/';
+const endpoint = 'https://covid19-graphql.netlify.app/';
 
 const runHandler = (event, context, handler) =>
     new Promise((resolve, reject) => {

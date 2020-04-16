@@ -2592,6 +2592,13 @@ normalize-url@^4.1.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-4.5.0.tgz#453354087e6ca96957bd8f5baf753f5982142129"
   integrity sha512-2s47yzUxdexf1OhyRi4Em83iQk0aPvwTddtFz4hnSSw9dCEsLEGf6SwIO8ss/19S9iBb5sJaOuTvTGDeZI00BQ==
 
+novelcovid@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/novelcovid/-/novelcovid-1.1.4.tgz#1ab18b9336e1594a366dc4eb8a7b08d5b2139d74"
+  integrity sha512-JHVPUtWnkBXYoXmT/9kdHdTAGt1IscjMUROn7tD5vMg4RVdRmC2VuBR2jaw6Dz6YnlzpMs+aBdMgEUMT0duSbQ==
+  dependencies:
+    node-fetch "^2.6.0"
+
 object-assign@^4:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
