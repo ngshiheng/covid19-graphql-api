@@ -4,8 +4,7 @@ import { DATA_SOURCE_URL } from '@utils/consts';
 import { ApolloError } from 'apollo-server';
 import fetch from 'node-fetch';
 import 'reflect-metadata';
-import { Context } from 'server';
-import { Arg, Args, Ctx, Query, Resolver } from 'type-graphql';
+import { Arg, Args, Query, Resolver } from 'type-graphql';
 
 @Resolver(Country)
 export class CountryResolvers {
@@ -13,12 +12,18 @@ export class CountryResolvers {
         description:
             'Get global stats: cases, deaths, recovered, time last updated, and active cases',
     })
-    async globalTotal(@Ctx() { covid }: Context) {
+    async globalTotal(): Promise<Result> {
         try {
-            const { updated, ...data } = await covid.all();
+            const response = await fetch(`${DATA_SOURCE_URL}/v2/all`);
+            if (response.status !== 200) {
+                throw new ApolloError(
+                    'An unknown error has occurred, please try again later',
+                );
+            }
+            const { updated, ...data } = await response.json();
             return { updated: new Date(updated), ...data };
         } catch (error) {
-            throw new ApolloError(error);
+            throw error;
         }
     }
 
@@ -26,17 +31,22 @@ export class CountryResolvers {
         description:
             "Get the same data from the 'countries' query, but filter down to a specific country",
     })
-    async country(
-        @Ctx() { covid }: Context,
-        @Arg('name') name: string,
-    ): Promise<Country> {
+    async country(@Arg('name') name: string): Promise<Country> {
         try {
+            const response = await fetch(
+                `${DATA_SOURCE_URL}/v2/countries/${name}`,
+            );
+            if (response.status !== 200) {
+                throw new ApolloError(
+                    'Country data not found, please try again',
+                );
+            }
             const {
                 country,
                 countryInfo,
                 updated,
                 ...data
-            }: any = await covid.countries(name); // TODO: Update 'any' after API library fixes this
+            } = await response.json();
             return {
                 country,
                 countryInfo,
@@ -58,7 +68,7 @@ export class CountryResolvers {
         try {
             const result = [];
             const response = await fetch(
-                `${DATA_SOURCE_URL}/countries?sort=${sortBy}`,
+                `${DATA_SOURCE_URL}/v2/countries?sort=${sortBy}`,
             );
             if (response.status !== 200) {
                 throw new ApolloError(
@@ -90,7 +100,7 @@ export class CountryResolvers {
         try {
             const result = [];
             const response = await fetch(
-                `${DATA_SOURCE_URL}/countries?sort=${sortBy}`,
+                `${DATA_SOURCE_URL}/v2/countries?sort=${sortBy}`,
             );
             if (response.status !== 200) {
                 throw new ApolloError(
