@@ -1,5 +1,6 @@
 import { State } from '@entities/State.entity';
 import { DATA_SOURCE_URL } from '@utils/consts';
+import { ApolloError } from 'apollo-server';
 import fetch from 'node-fetch';
 import 'reflect-metadata';
 import { Context } from 'server';
@@ -15,12 +16,12 @@ export class StateResolvers {
         try {
             const response = await fetch(`${DATA_SOURCE_URL}/states/${name}`);
             if (response.status !== 200) {
-                throw new Error('State data not found, please try again');
+                throw new ApolloError('State data not found, please try again');
             }
             const { state, ...data } = await response.json();
             return { state, result: { ...data } };
         } catch (error) {
-            throw error;
+            throw new ApolloError(error);
         }
     }
 
@@ -40,7 +41,7 @@ export class StateResolvers {
             }
             return result;
         } catch (error) {
-            throw error;
+            throw new ApolloError(error);
         }
     }
 }

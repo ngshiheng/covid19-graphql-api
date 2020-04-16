@@ -46,7 +46,7 @@ export class CountryResolvers {
                 },
             };
         } catch (error) {
-            throw error;
+            throw new ApolloError(error);
         }
     }
 
@@ -61,7 +61,7 @@ export class CountryResolvers {
                 `${DATA_SOURCE_URL}/countries?sort=${sortBy}`,
             );
             if (response.status !== 200) {
-                throw new Error(
+                throw new ApolloError(
                     'An unknown error has occurred, please try again later',
                 );
             }
@@ -78,7 +78,7 @@ export class CountryResolvers {
             }
             return result;
         } catch (error) {
-            throw error;
+            throw new ApolloError(error);
         }
     }
 
@@ -93,7 +93,7 @@ export class CountryResolvers {
                 `${DATA_SOURCE_URL}/countries?sort=${sortBy}`,
             );
             if (response.status !== 200) {
-                throw new Error(
+                throw new ApolloError(
                     'An unknown error has occurred, please try again later',
                 );
             }
@@ -110,7 +110,7 @@ export class CountryResolvers {
             }
             return result;
         } catch (error) {
-            throw error;
+            throw new ApolloError(error);
         }
     }
 }
