@@ -12,6 +12,7 @@ jobs:
                       - run: yarn
                       - run: yarn eslint
                       - run: yarn prettier
+                      - run: yarn test
 workflows:
     build-and-test:
         jobs:
