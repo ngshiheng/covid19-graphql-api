@@ -2,7 +2,7 @@ import ApolloClient from 'apollo-boost';
 
 export const getClient = (token?: string) => {
     return new ApolloClient({
-        uri: 'http://localhost:4000/',
+        uri: 'https://covid19-graphql.netlify.app/',
         request: (operation) => {
             if (token) {
                 operation.setContext({
