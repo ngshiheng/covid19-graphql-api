@@ -50,7 +50,7 @@ export const createLocalServer = async () => {
                     query: DEFAULT_QUERY_STATES,
                 },
                 {
-                    name: 'By a specific states in the US',
+                    name: 'By a specific state in the US',
                     headers: {},
                     query: DEFAULT_QUERY_STATE,
                 },

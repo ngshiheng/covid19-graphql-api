@@ -1,3 +1,7 @@
+export const DEV_URL = 'http://localhost:4000';
+
+export const PROD_URL = 'https://covid19-graphql.netlify.app/';
+
 export const DATA_SOURCE_URL = 'https://corona.lmao.ninja';
 
 export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has COVID-19

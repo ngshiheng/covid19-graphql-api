@@ -1,8 +1,13 @@
 import ApolloClient from 'apollo-boost';
+import { DEV_URL, PROD_URL } from './consts';
+
+const isDevelopment = (): Boolean => {
+    return process.env.NODE_ENV === 'development';
+};
 
 export const getClient = (token?: string) => {
     return new ApolloClient({
-        uri: 'https://covid19-graphql.netlify.app/',
+        uri: isDevelopment() ? DEV_URL : PROD_URL,
         request: (operation) => {
             if (token) {
                 operation.setContext({
