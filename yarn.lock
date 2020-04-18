@@ -4164,15 +4164,15 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
+node-fetch@*, node-fetch@2.6.0, node-fetch@^2.1.2, node-fetch@^2.2.0, node-fetch@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
+  integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
+
 node-fetch@2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.1.2.tgz#ab884e8e7e57e38a944753cec706f788d1768bb5"
   integrity sha1-q4hOjn5X44qUR1POxwb3iNF2i7U=
-
-node-fetch@2.6.0, node-fetch@^2.1.2, node-fetch@^2.2.0, node-fetch@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
-  integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
 
 node-int64@^0.4.0:
   version "0.4.0"
@@ -4235,12 +4235,12 @@ normalize-url@^4.1.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-4.5.0.tgz#453354087e6ca96957bd8f5baf753f5982142129"
   integrity sha512-2s47yzUxdexf1OhyRi4Em83iQk0aPvwTddtFz4hnSSw9dCEsLEGf6SwIO8ss/19S9iBb5sJaOuTvTGDeZI00BQ==
 
-novelcovid@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/novelcovid/-/novelcovid-1.1.4.tgz#1ab18b9336e1594a366dc4eb8a7b08d5b2139d74"
-  integrity sha512-JHVPUtWnkBXYoXmT/9kdHdTAGt1IscjMUROn7tD5vMg4RVdRmC2VuBR2jaw6Dz6YnlzpMs+aBdMgEUMT0duSbQ==
+novelcovid@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/novelcovid/-/novelcovid-1.2.5.tgz#0163f0d50088c144f82c18ec55edcc19dde67f9d"
+  integrity sha512-ssyjyX8JvhPOfEE9ss4VEYYyVcwqiWDKAo+p7mCTjFcQynSg/kixRXXTKl2RbbJugBdNaV7HW6X7Zy4ybW9Jbw==
   dependencies:
-    node-fetch "^2.6.0"
+    node-fetch "*"
 
 npm-run-path@^2.0.0:
   version "2.0.2"

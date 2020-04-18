@@ -13,7 +13,7 @@
         "eslint:fix:": "eslint --fix . --ext ts,gql --ignore-path .eslintignore",
         "prettier": "prettier \"./**/*.{ts,yml,yaml}\" -l --ignore-path .eslintignore",
         "prettier:fix": "prettier \"./**/*.{ts,yml,yaml}\" --write --ignore-path .eslintignore",
-        "test": "jest --detectOpenHandles"
+        "test": "jest --detectOpenHandles --testTimeout 60000"
     },
     "prettier": {
         "trailingComma": "all",
@@ -25,7 +25,7 @@
         "apollo-server-lambda": "^2.12.0",
         "graphql": "^14.6.0",
         "node-fetch": "^2.6.0",
-        "novelcovid": "^1.1.4",
+        "novelcovid": "^1.2.5",
         "reflect-metadata": "^0.1.13",
         "type-graphql": "^0.17.6"
     },
