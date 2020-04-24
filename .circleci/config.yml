@@ -13,7 +13,7 @@ jobs:
                       - run: yarn
                       - run: yarn eslint
                       - run: yarn prettier
-                      - run: timeout 300 yarn start & (sleep 5 && yarn test)
+                      - run: yarn start & (echo "Wait for 5 seconds for the server to start" && sleep 5 && echo "Starting test..." && yarn test)
     deploy-build:
         description: 'Trigger build and deploy with netlify build hook'
         docker:
