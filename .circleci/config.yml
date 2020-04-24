@@ -2,7 +2,8 @@ version: 2.1
 orbs:
     node: circleci/node@1.1.6
 jobs:
-    build-and-test:
+    test-api:
+        description: 'Prettier & eslint checks; then start API server on localhost to run integration test'
         executor:
             name: node/default
         steps:
@@ -12,8 +13,21 @@ jobs:
                       - run: yarn
                       - run: yarn eslint
                       - run: yarn prettier
-                      - run: yarn test
+                      - run: timeout 300 yarn start & (sleep 5 && yarn test)
+    deploy-build:
+        description: 'Trigger build and deploy with netlify build hook'
+        docker:
+            - image: cimg/base:2020.01
+        steps:
+            - run: $BUILD_HOOK
+
 workflows:
-    build-and-test:
+    test-and-deploy:
         jobs:
-            - build-and-test
+            - test-api
+            - deploy-build:
+                  requires:
+                      - test-api
+                  filters:
+                      branches:
+                          only: master
