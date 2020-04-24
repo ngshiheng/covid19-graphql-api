@@ -51,6 +51,9 @@ export class Country {
         description: 'Contains the results of the country',
     })
     result: Result;
+
+    @Field({ description: 'Continent of the specific country' })
+    continent: string;
 }
 
 @ArgsType()

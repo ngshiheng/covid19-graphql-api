@@ -52,6 +52,7 @@ describe('Queries', () => {
         expect(data).toHaveProperty('country');
         expect(data.country).toMatchObject({ country: 'Malaysia' });
         expect(data.country).toHaveProperty('countryInfo');
+        expect(data.country).toMatchObject({ continent: 'Asia' });
         expect(data.country.countryInfo).toEqual(
             expect.objectContaining({
                 _id: expect.any(String),
@@ -101,6 +102,7 @@ describe('Queries', () => {
                         iso2: expect.any(String),
                         iso3: expect.any(String),
                     }),
+                    continent: expect.any(String),
                     result: expect.objectContaining({
                         tests: expect.any(Number),
                         cases: expect.any(Number),
