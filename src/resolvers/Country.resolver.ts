@@ -4,7 +4,8 @@ import { DATA_SOURCE_URL } from '@utils/consts';
 import { ApolloError } from 'apollo-server';
 import fetch from 'node-fetch';
 import 'reflect-metadata';
-import { Arg, Args, Query, Resolver } from 'type-graphql';
+import { Arg, Args, Query, Resolver, Ctx } from 'type-graphql';
+import { Context } from 'server';
 
 @Resolver(Country)
 export class CountryResolvers {
@@ -12,19 +13,9 @@ export class CountryResolvers {
         description:
             'Get global stats: cases, deaths, recovered, time last updated, and active cases',
     })
-    async globalTotal(): Promise<Result> {
-        try {
-            const response = await fetch(`${DATA_SOURCE_URL}/v2/all`);
-            if (response.status !== 200) {
-                throw new ApolloError(
-                    'An unknown error has occurred, please try again later',
-                );
-            }
-            const { updated, ...data } = await response.json();
-            return { updated: new Date(updated), ...data };
-        } catch (error) {
-            throw error;
-        }
+    async globalTotal(@Ctx() { covid }: Context): Promise<Result> {
+        const { updated, ...data } = await covid.all();
+        return { updated: new Date(updated), ...data };
     }
 
     @Query(() => Country, {
@@ -41,19 +32,13 @@ export class CountryResolvers {
                     'Country data not found, please try again',
                 );
             }
-            const {
-                country,
-                countryInfo,
-                updated,
-                ...data
-            } = await response.json();
+            const { updated, ...data } = await response.json();
             return {
-                country,
-                countryInfo,
                 result: {
                     updated: new Date(updated),
                     ...data,
                 },
+                ...data,
             };
         } catch (error) {
             throw new ApolloError(error);
@@ -76,14 +61,13 @@ export class CountryResolvers {
                 );
             }
             const results = await response.json();
-            for (const { country, countryInfo, updated, ...data } of results) {
+            for (const { updated, ...data } of results) {
                 result.push({
-                    country,
-                    countryInfo,
                     result: {
                         updated: new Date(updated),
                         ...data,
                     },
+                    ...data,
                 });
             }
             return result;
@@ -108,14 +92,13 @@ export class CountryResolvers {
                 );
             }
             const results = await response.json();
-            for (const { country, countryInfo, updated, ...data } of results) {
+            for (const { updated, ...data } of results) {
                 result.push({
-                    country,
-                    countryInfo,
                     result: {
                         updated: new Date(updated),
                         ...data,
                     },
+                    ...data,
                 });
             }
             return result;

@@ -16,6 +16,7 @@ export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has
             iso3
             iso2
         }
+        continent
         result {
             tests
             cases
@@ -47,6 +48,7 @@ export const DEFAULT_QUERY_COUNTRY = `# Returns data of a specific country
             iso2
             iso3
         }
+        continent
         result {
             tests
             cases
@@ -103,6 +105,7 @@ export const DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS = `# Returns data sort by co
 {
     countries(sortBy: deaths) {
         country
+        continent
         result {
             active
             deaths
@@ -118,6 +121,7 @@ export const DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES = `# Returns data sort by cou
 {
     countries(sortBy: cases) {
         country
+        continent
         result {
             active
             cases
