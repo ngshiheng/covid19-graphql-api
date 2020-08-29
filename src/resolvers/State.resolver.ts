@@ -14,13 +14,19 @@ export class StateResolvers {
     async state(@Arg('name') name: string): Promise<State> {
         try {
             const response = await fetch(
-                `${DATA_SOURCE_URL}/v3/covid-19/states/${name}`,
+                `${DATA_SOURCE_URL}/covid-19/states/${name}`,
             );
             if (response.status !== 200) {
                 throw new ApolloError('State data not found, please try again');
             }
-            const { state, ...data } = await response.json();
-            return { state, result: { ...data } };
+            const { updated, state, ...data } = await response.json();
+            return {
+                state,
+                result: {
+                    updated: new Date(updated),
+                    ...data,
+                },
+            };
         } catch (error) {
             throw new ApolloError(error);
         }
@@ -33,19 +39,20 @@ export class StateResolvers {
     async states(): Promise<State[]> {
         try {
             const result = [];
-            const response = await fetch(
-                `${DATA_SOURCE_URL}/v3/covid-19/states`,
-            );
+            const response = await fetch(`${DATA_SOURCE_URL}/covid-19/states`);
             if (response.status !== 200) {
                 throw new ApolloError(
                     'States data not found, please try again',
                 );
             }
             const results = await response.json();
-            for (const { state, ...data } of results) {
+            for (const { updated, state, ...data } of results) {
                 result.push({
                     state,
-                    result: { ...data },
+                    result: {
+                        updated: new Date(updated),
+                        ...data,
+                    },
                 });
             }
             return result;

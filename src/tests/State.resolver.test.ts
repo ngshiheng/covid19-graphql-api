@@ -22,13 +22,17 @@ describe('Queries', () => {
         expect(data.state).toHaveProperty('result');
         expect(data.state.result).toEqual(
             expect.objectContaining({
+                population: expect.any(Number),
                 active: expect.any(Number),
                 tests: expect.any(Number),
-                testsPerOneMillion: expect.any(Number),
                 cases: expect.any(Number),
                 todayCases: expect.any(Number),
                 deaths: expect.any(Number),
                 todayDeaths: expect.any(Number),
+                casesPerOneMillion: expect.any(Number),
+                deathsPerOneMillion: expect.any(Number),
+                testsPerOneMillion: expect.any(Number),
+                updated: expect.any(String),
             }),
         );
     });
@@ -46,13 +50,17 @@ describe('Queries', () => {
             expect.arrayContaining([
                 expect.objectContaining({
                     result: expect.objectContaining({
+                        population: expect.any(Number),
                         active: expect.any(Number),
                         tests: expect.any(Number),
-                        testsPerOneMillion: expect.any(Number),
                         cases: expect.any(Number),
                         todayCases: expect.any(Number),
                         deaths: expect.any(Number),
                         todayDeaths: expect.any(Number),
+                        casesPerOneMillion: expect.any(Number),
+                        deathsPerOneMillion: expect.any(Number),
+                        testsPerOneMillion: expect.any(Number),
+                        updated: expect.any(String),
                     }),
                 }),
             ]),

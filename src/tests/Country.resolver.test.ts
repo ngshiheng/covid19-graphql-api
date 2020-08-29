@@ -25,6 +25,7 @@ describe('Queries', () => {
         expect(data).toHaveProperty('globalTotal');
         expect(data.globalTotal).toEqual(
             expect.objectContaining({
+                population: expect.any(Number),
                 affectedCountries: expect.any(Number),
                 tests: expect.any(Number),
                 cases: expect.any(Number),
@@ -37,6 +38,9 @@ describe('Queries', () => {
                 casesPerOneMillion: expect.any(Number),
                 deathsPerOneMillion: expect.any(Number),
                 testsPerOneMillion: expect.any(Number),
+                activePerOneMillion: expect.any(Number),
+                recoveredPerOneMillion: expect.any(Number),
+                criticalPerOneMillion: expect.any(Number),
             }),
         );
     });
@@ -66,6 +70,7 @@ describe('Queries', () => {
         expect(data.country).toHaveProperty('result');
         expect(data.country.result).toEqual(
             expect.objectContaining({
+                population: expect.any(Number),
                 tests: expect.any(Number),
                 cases: expect.any(Number),
                 todayCases: expect.any(Number),
@@ -77,6 +82,9 @@ describe('Queries', () => {
                 casesPerOneMillion: expect.any(Number),
                 deathsPerOneMillion: expect.any(Number),
                 testsPerOneMillion: expect.any(Number),
+                activePerOneMillion: expect.any(Number),
+                recoveredPerOneMillion: expect.any(Number),
+                criticalPerOneMillion: expect.any(Number),
             }),
         );
     });
@@ -104,6 +112,7 @@ describe('Queries', () => {
                     }),
                     continent: expect.any(String),
                     result: expect.objectContaining({
+                        population: expect.any(Number),
                         tests: expect.any(Number),
                         cases: expect.any(Number),
                         todayCases: expect.any(Number),
@@ -115,6 +124,9 @@ describe('Queries', () => {
                         casesPerOneMillion: expect.any(Number),
                         deathsPerOneMillion: expect.any(Number),
                         testsPerOneMillion: expect.any(Number),
+                        activePerOneMillion: expect.any(Number),
+                        recoveredPerOneMillion: expect.any(Number),
+                        criticalPerOneMillion: expect.any(Number),
                     }),
                 }),
             ]),
