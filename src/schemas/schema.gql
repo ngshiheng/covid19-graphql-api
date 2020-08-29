@@ -89,6 +89,9 @@ type Result {
   """Total number of active cases"""
   active: Int!
 
+  """Active cases per one million"""
+  activePerOneMillion: Float
+
   """Total number of affected countries"""
   affectedCountries: Int
 
@@ -101,14 +104,23 @@ type Result {
   """Total number of critical cases"""
   critical: Int
 
+  """Critical cases per one million"""
+  criticalPerOneMillion: Float
+
   """Total number of reported deaths"""
   deaths: Int!
 
   """Deaths per one million"""
   deathsPerOneMillion: Float
 
+  """Total number of affected population"""
+  population: Float
+
   """Total number of reported recovery"""
   recovered: Int
+
+  """Recovered cases per one million"""
+  recoveredPerOneMillion: Float
 
   """Total number of tests conducted"""
   tests: Int
@@ -121,6 +133,9 @@ type Result {
 
   """Total number of reported deaths today"""
   todayDeaths: Int!
+
+  """Total number of recovered cases reported today"""
+  todayRecovered: Int!
 
   """Last updated date"""
   updated: DateTime

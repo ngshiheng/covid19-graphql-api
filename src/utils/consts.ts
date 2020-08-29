@@ -2,7 +2,7 @@ export const DEV_URL = 'http://localhost:4000';
 
 export const PROD_URL = 'https://covid19-graphql.netlify.app/';
 
-export const DATA_SOURCE_URL = 'https://corona.lmao.ninja';
+export const DATA_SOURCE_URL = 'https://disease.sh/v3';
 
 export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has COVID-19
 {
@@ -18,6 +18,7 @@ export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has
         }
         continent
         result {
+            population
             tests
             cases
             todayCases
@@ -29,6 +30,9 @@ export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has
             casesPerOneMillion
             deathsPerOneMillion
             testsPerOneMillion
+            activePerOneMillion
+            recoveredPerOneMillion
+            criticalPerOneMillion
             updated
         }
     }
@@ -50,6 +54,7 @@ export const DEFAULT_QUERY_COUNTRY = `# Returns data of a specific country
         }
         continent
         result {
+            population
             tests
             cases
             todayCases
@@ -61,6 +66,9 @@ export const DEFAULT_QUERY_COUNTRY = `# Returns data of a specific country
             casesPerOneMillion
             deathsPerOneMillion
             testsPerOneMillion
+            activePerOneMillion
+            recoveredPerOneMillion
+            criticalPerOneMillion
             updated
         }
     }
@@ -72,13 +80,17 @@ export const DEFAULT_QUERY_STATES = `# Returns data by states in the United Stat
     states {
         state
         result {
+            population
             active
             tests
             cases
             todayCases
             deaths
             todayDeaths
+            casesPerOneMillion
+            deathsPerOneMillion
             testsPerOneMillion
+            updated
         }
     }
 }
@@ -89,13 +101,17 @@ export const DEFAULT_QUERY_STATE = `# Returns data of a specific state in the Un
     state(name: "New York") {
         state
         result {
+            population
             active
             tests
-            testsPerOneMillion
             cases
             todayCases
             deaths
             todayDeaths
+            casesPerOneMillion
+            deathsPerOneMillion
+            testsPerOneMillion
+            updated
         }
     }
 }
@@ -136,6 +152,7 @@ export const DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES = `# Returns data sort by cou
 export const DEFAULT_QUERY_GLOBAL = `# Returns global data
 {
     globalTotal {
+        population
         affectedCountries
         tests
         cases
@@ -148,6 +165,9 @@ export const DEFAULT_QUERY_GLOBAL = `# Returns global data
         casesPerOneMillion
         deathsPerOneMillion
         testsPerOneMillion
+        activePerOneMillion
+        recoveredPerOneMillion
+        criticalPerOneMillion
         updated
     }
 }
