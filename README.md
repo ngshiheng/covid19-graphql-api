@@ -24,7 +24,7 @@
 
 ## Source
 
--   https://github.com/novelcovid/api
+-   https://github.com/disease-sh/API
 
 ## Stacks
 
@@ -32,7 +32,7 @@
 -   [apollo-server-lambda](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-lambda)
 -   [typescript](https://www.typescriptlang.org/)
 -   [type-graphql](https://typegraphql.com/)
--   [novelcovid-api](https://github.com/novelcovid/api)
+-   [disease-sh-api](https://github.com/disease-sh/API)
 
 ## Local Usage
 
