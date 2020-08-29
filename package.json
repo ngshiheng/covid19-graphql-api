@@ -23,6 +23,7 @@
     "dependencies": {
         "apollo-server": "^2.17.0",
         "apollo-server-lambda": "^2.17.0",
+        "class-validator": "^0.12.2",
         "graphql": "^15.3.0",
         "node-fetch": "^2.6.0",
         "novelcovid": "^3.0.0",
