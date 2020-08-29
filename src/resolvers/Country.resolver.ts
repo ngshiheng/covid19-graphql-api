@@ -14,7 +14,7 @@ export class CountryResolvers {
     })
     async globalTotal(): Promise<Result> {
         try {
-            const response = await fetch(`${DATA_SOURCE_URL}/v2/all`);
+            const response = await fetch(`${DATA_SOURCE_URL}/v3/covid-19/all`);
             if (response.status !== 200) {
                 throw new ApolloError(
                     'An unknown error has occurred, please try again later',
@@ -34,7 +34,7 @@ export class CountryResolvers {
     async country(@Arg('name') name: string): Promise<Country> {
         try {
             const response = await fetch(
-                `${DATA_SOURCE_URL}/v2/countries/${name}`,
+                `${DATA_SOURCE_URL}/v3/covid-19/countries/${name}`,
             );
             if (response.status !== 200) {
                 throw new ApolloError(
@@ -62,7 +62,7 @@ export class CountryResolvers {
         try {
             const result = [];
             const response = await fetch(
-                `${DATA_SOURCE_URL}/v2/countries?sort=${sortBy}`,
+                `${DATA_SOURCE_URL}/v3/covid-19/countries?sort=${sortBy}`,
             );
             if (response.status !== 200) {
                 throw new ApolloError(
@@ -93,7 +93,7 @@ export class CountryResolvers {
         try {
             const result = [];
             const response = await fetch(
-                `${DATA_SOURCE_URL}/v2/countries?sort=${sortBy}`,
+                `${DATA_SOURCE_URL}/v3/covid-19/countries?sort=${sortBy}`,
             );
             if (response.status !== 200) {
                 throw new ApolloError(
