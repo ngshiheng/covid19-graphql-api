@@ -12,7 +12,7 @@ export const getClient = (token?: string) => {
             if (token) {
                 operation.setContext({
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        authorization: `Bearer ${token}`,
                     },
                 });
             }
