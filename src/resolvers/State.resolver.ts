@@ -1,7 +1,11 @@
-import { State } from '@entities/State.entity';
+import {
+    State,
+    StateFilterInput,
+    StateSortInput,
+} from '@entities/State.entity';
 import { ApolloError } from 'apollo-server';
 import 'reflect-metadata';
-import { Arg, Ctx, Query, Resolver } from 'type-graphql';
+import { Arg, Args, Ctx, Query, Resolver } from 'type-graphql';
 
 @Resolver(State)
 export class StateResolvers {
@@ -12,9 +16,10 @@ export class StateResolvers {
     async state(
         @Ctx() { dataSources }: any,
         @Arg('name') name: string,
+        @Args() filterBy: StateFilterInput,
     ): Promise<State> {
         try {
-            return dataSources.diseases.getState(name);
+            return dataSources.diseases.getState(name, filterBy);
         } catch (error) {
             throw new ApolloError(error);
         }
@@ -24,9 +29,13 @@ export class StateResolvers {
         description:
             'Get stats on United States of America States with COVID-19, including cases, new cases, deaths, new deaths, and active cases',
     })
-    async states(@Ctx() { dataSources }: any): Promise<State[]> {
+    async states(
+        @Ctx() { dataSources }: any,
+        @Args() sortBy: StateSortInput,
+        @Args() filterBy: StateFilterInput,
+    ): Promise<State[]> {
         try {
-            return dataSources.diseases.getStates();
+            return dataSources.diseases.getStates(filterBy, sortBy);
         } catch (error) {
             throw new ApolloError(error);
         }

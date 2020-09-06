@@ -1,4 +1,8 @@
-import { Country, FilterInput, SortInput } from '@entities/Country.entity';
+import {
+    Country,
+    CountryFilterInput,
+    CountrySortInput,
+} from '@entities/Country.entity';
 import { Result } from '@entities/Result.entity';
 import { ApolloError } from 'apollo-server';
 import 'reflect-metadata';
@@ -12,7 +16,7 @@ export class CountryResolvers {
     })
     async globalTotal(
         @Ctx() { dataSources }: any,
-        @Args() filterBy: FilterInput,
+        @Args() filterBy: CountryFilterInput,
     ): Promise<Result> {
         try {
             return dataSources.diseases.getAll(filterBy);
@@ -28,7 +32,7 @@ export class CountryResolvers {
     async country(
         @Ctx() { dataSources }: any,
         @Arg('name') name: string,
-        @Args() filterBy: FilterInput,
+        @Args() filterBy: CountryFilterInput,
     ): Promise<Country> {
         try {
             return dataSources.diseases.getCountry(name, filterBy);
@@ -43,8 +47,8 @@ export class CountryResolvers {
     })
     async countries(
         @Ctx() { dataSources }: any,
-        @Args() sortBy: SortInput,
-        @Args() filterBy: FilterInput,
+        @Args() sortBy: CountrySortInput,
+        @Args() filterBy: CountryFilterInput,
     ): Promise<Country[]> {
         try {
             return dataSources.diseases.getCountries(filterBy, sortBy);

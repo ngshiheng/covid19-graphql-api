@@ -1,4 +1,5 @@
-import { FilterInput, SortInput } from '@entities/Country.entity';
+import { CountryFilterInput, CountrySortInput } from '@entities/Country.entity';
+import { StateFilterInput, StateSortInput } from '@entities/State.entity';
 import { DATA_SOURCE_URL } from '@utils/consts';
 import { RESTDataSource } from 'apollo-datasource-rest';
 
@@ -8,7 +9,7 @@ export class DiseasesAPI extends RESTDataSource {
         this.baseURL = DATA_SOURCE_URL;
     }
 
-    async getAll({ filterBy }: FilterInput) {
+    async getAll({ filterBy }: CountryFilterInput) {
         const { updated, ...data } = await this.get(`covid-19/all`, {
             yesterday: filterBy === 'yesterday' ? true : false,
             twoDaysAgo: filterBy === 'twoDaysAgo' ? true : false,
@@ -16,7 +17,7 @@ export class DiseasesAPI extends RESTDataSource {
         return { updated: new Date(updated), ...data };
     }
 
-    async getCountry(name: string, { filterBy }: FilterInput) {
+    async getCountry(name: string, { filterBy }: CountryFilterInput) {
         const { updated, ...data } = await this.get(
             `covid-19/countries/${name}`,
             {
@@ -34,7 +35,10 @@ export class DiseasesAPI extends RESTDataSource {
         };
     }
 
-    async getCountries({ filterBy }: FilterInput, { sortBy }: SortInput) {
+    async getCountries(
+        { filterBy }: CountryFilterInput,
+        { sortBy }: CountrySortInput,
+    ) {
         const result = [];
 
         const response = await this.get(`covid-19/countries`, {
@@ -55,9 +59,12 @@ export class DiseasesAPI extends RESTDataSource {
         return result;
     }
 
-    async getState(name: string) {
+    async getState(name: string, { filterBy }: StateFilterInput) {
         const { updated, state, ...data } = await this.get(
             `covid-19/states/${name}`,
+            {
+                yesterday: filterBy === 'yesterday' ? true : false,
+            },
         );
 
         return {
@@ -69,10 +76,16 @@ export class DiseasesAPI extends RESTDataSource {
         };
     }
 
-    async getStates() {
+    async getStates(
+        { filterBy }: StateFilterInput,
+        { sortBy }: StateSortInput,
+    ) {
         const result = [];
 
-        const response = await this.get(`covid-19/states`);
+        const response = await this.get(`covid-19/states`, {
+            sort: sortBy,
+            yesterday: filterBy === 'yesterday' ? true : false,
+        });
 
         for (const { updated, state, ...data } of response) {
             result.push({
