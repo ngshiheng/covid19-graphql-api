@@ -1,4 +1,5 @@
 require('reflect-metadata');
+const { DiseasesAPI } = require('./bundle/datasources/diseases');
 const { ApolloServer } = require('apollo-server-lambda');
 const { buildSchema } = require('type-graphql');
 const { CountryResolvers } = require('./bundle/resolvers/Country.resolver');
@@ -29,6 +30,9 @@ const run = async (event, context) => {
 
     const server = new ApolloServer({
         schema,
+        dataSources: () => ({
+            diseases: new DiseasesAPI(),
+        }),
         introspection: true,
         playground: {
             tabs: [
