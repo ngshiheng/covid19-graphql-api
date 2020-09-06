@@ -57,6 +57,25 @@ export class Country {
 }
 
 @ArgsType()
+export class FilterInput {
+    @Field(() => ResultParametersFilterInput, {
+        nullable: true,
+        description: 'Queries data reported a day ago or two days ago.',
+    })
+    filterBy?: ResultParametersFilterInput;
+}
+
+export enum ResultParametersFilterInput {
+    yesterday = 'yesterday',
+    twoDaysAgo = 'twoDaysAgo',
+}
+
+registerEnumType(ResultParametersFilterInput, {
+    name: 'ResultParametersFilterInput',
+    description: 'Filter parameters',
+});
+
+@ArgsType()
 export class SortInput {
     @Field(() => ResultParametersSortInput, {
         nullable: true,
