@@ -55,35 +55,35 @@ export class DiseasesAPI extends RESTDataSource {
         return result;
     }
 
-    async getStates(name: string) {
-        if (!name) {
-            const result = [];
+    async getState(name: string) {
+        const { updated, state, ...data } = await this.get(
+            `covid-19/states/${name}`,
+        );
 
-            const response = await this.get(`covid-19/states`);
+        return {
+            state,
+            result: {
+                updated: new Date(updated),
+                ...data,
+            },
+        };
+    }
 
-            for (const { updated, state, ...data } of response) {
-                result.push({
-                    state,
-                    result: {
-                        updated: new Date(updated),
-                        ...data,
-                    },
-                });
-            }
+    async getStates() {
+        const result = [];
 
-            return result;
-        } else {
-            const { updated, state, ...data } = await this.get(
-                `covid-19/states/${name}`,
-            );
+        const response = await this.get(`covid-19/states`);
 
-            return {
+        for (const { updated, state, ...data } of response) {
+            result.push({
                 state,
                 result: {
                     updated: new Date(updated),
                     ...data,
                 },
-            };
+            });
         }
+
+        return result;
     }
 }

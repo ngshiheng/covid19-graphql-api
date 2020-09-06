@@ -14,7 +14,7 @@ export class StateResolvers {
         @Arg('name') name: string,
     ): Promise<State> {
         try {
-            return dataSources.diseases.getStates(name);
+            return dataSources.diseases.getState(name);
         } catch (error) {
             throw new ApolloError(error);
         }
