@@ -57,16 +57,35 @@ export class Country {
 }
 
 @ArgsType()
-export class SortInput {
-    @Field(() => ResultParametersSortInput, {
+export class CountryFilterInput {
+    @Field(() => CountryResultParametersFilterInput, {
+        nullable: true,
+        description: 'Queries data reported a day ago or two days ago.',
+    })
+    filterBy?: CountryResultParametersFilterInput;
+}
+
+export enum CountryResultParametersFilterInput {
+    yesterday = 'yesterday',
+    twoDaysAgo = 'twoDaysAgo',
+}
+
+registerEnumType(CountryResultParametersFilterInput, {
+    name: 'CountryResultParametersFilterInput',
+    description: 'Filter parameters',
+});
+
+@ArgsType()
+export class CountrySortInput {
+    @Field(() => CountryResultParametersSortInput, {
         nullable: true,
         description:
             'Sort parameters for sorting response from countries query. Sorted by the highest number first',
     })
-    sortBy?: ResultParametersSortInput;
+    sortBy?: CountryResultParametersSortInput;
 }
 
-export enum ResultParametersSortInput {
+export enum CountryResultParametersSortInput {
     cases = 'cases',
     todayCases = 'todayCases',
     deaths = 'deaths',
@@ -78,7 +97,7 @@ export enum ResultParametersSortInput {
     deathsPerOneMillion = 'deathsPerOneMillion',
 }
 
-registerEnumType(ResultParametersSortInput, {
-    name: 'ResultParametersSortInput',
+registerEnumType(CountryResultParametersSortInput, {
+    name: 'CountryResultParametersSortInput',
     description: 'Sorting parameters',
 });

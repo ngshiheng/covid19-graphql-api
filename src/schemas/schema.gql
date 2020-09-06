@@ -39,6 +39,25 @@ type CountryInfo {
   long: Float!
 }
 
+"""Filter parameters"""
+enum CountryResultParametersFilterInput {
+  twoDaysAgo
+  yesterday
+}
+
+"""Sorting parameters"""
+enum CountryResultParametersSortInput {
+  active
+  cases
+  casesPerOneMillion
+  critical
+  deaths
+  deathsPerOneMillion
+  recovered
+  todayCases
+  todayDeaths
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -49,39 +68,51 @@ type Query {
   Returns a JSON array with an element for each country that has stats available. This includes iso codes, lat/long, a link to the country flag, cases, new cases, deaths, new deaths, recovered, active cases, critical cases, and cases/deaths per one million people
   """
   countries(
+    """Queries data reported a day ago or two days ago."""
+    filterBy: CountryResultParametersFilterInput
+
     """
     Sort parameters for sorting response from countries query. Sorted by the highest number first
     """
-    sortBy: ResultParametersSortInput
+    sortBy: CountryResultParametersSortInput
   ): [Country!]!
 
   """
   Get the same data from the 'countries' query, but filter down to a specific country
   """
-  country(name: String!): Country!
+  country(
+    """Queries data reported a day ago or two days ago."""
+    filterBy: CountryResultParametersFilterInput
+    name: String!
+  ): Country!
 
   """
   Get global stats: cases, deaths, recovered, time last updated, and active cases
   """
-  globalTotal: Result!
+  globalTotal(
+    """Queries data reported a day ago or two days ago."""
+    filterBy: CountryResultParametersFilterInput
+  ): Result!
 
   """Get cases, new cases, deaths, new deaths, and active cases for a state"""
-  state(name: String!): State!
+  state(
+    """Queries data reported a day ago or two days ago."""
+    filterBy: StateResultParametersFilterInput
+    name: String!
+  ): State!
 
   """
   Get stats on United States of America States with COVID-19, including cases, new cases, deaths, new deaths, and active cases
   """
-  states: [State!]!
+  states(
+    """Queries data reported a day ago or two days ago."""
+    filterBy: StateResultParametersFilterInput
 
-  """
-  Returns a JSON array with an element for each country that has stats available. This includes iso codes, lat/long, a link to the country flag, cases, new cases, deaths, new deaths, recovered, active cases, critical cases, and cases/deaths per one million people
-  """
-  yesterday(
     """
-    Sort parameters for sorting response from countries query. Sorted by the highest number first
+    Sort parameters for sorting response from states query. Sorted by the highest number first
     """
-    sortBy: ResultParametersSortInput
-  ): [Country!]!
+    sortBy: StateResultParametersSortInput
+  ): [State!]!
 }
 
 """Result object"""
@@ -141,19 +172,6 @@ type Result {
   updated: DateTime
 }
 
-"""Sorting parameters"""
-enum ResultParametersSortInput {
-  active
-  cases
-  casesPerOneMillion
-  critical
-  deaths
-  deathsPerOneMillion
-  recovered
-  todayCases
-  todayDeaths
-}
-
 """State object"""
 type State {
   """Contains the result of the state"""
@@ -161,4 +179,18 @@ type State {
 
   """Name of the state"""
   state: String!
+}
+
+"""Filter parameters"""
+enum StateResultParametersFilterInput {
+  yesterday
+}
+
+"""Sorting parameters"""
+enum StateResultParametersSortInput {
+  active
+  cases
+  deaths
+  todayCases
+  todayDeaths
 }
