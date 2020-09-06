@@ -4,7 +4,7 @@ import { DATA_SOURCE_URL } from '@utils/consts';
 import { ApolloError } from 'apollo-server';
 import fetch from 'node-fetch';
 import 'reflect-metadata';
-import { Arg, Args, Query, Resolver } from 'type-graphql';
+import { Arg, Args, Ctx, Query, Resolver } from 'type-graphql';
 
 @Resolver(Country)
 export class CountryResolvers {
@@ -12,18 +12,11 @@ export class CountryResolvers {
         description:
             'Get global stats: cases, deaths, recovered, time last updated, and active cases',
     })
-    async globalTotal(): Promise<Result> {
+    async globalTotal(@Ctx() { dataSources }: any): Promise<Result> {
         try {
-            const response = await fetch(`${DATA_SOURCE_URL}/covid-19/all`);
-            if (response.status !== 200) {
-                throw new ApolloError(
-                    'An unknown error has occurred, please try again later',
-                );
-            }
-            const { updated, ...data } = await response.json();
-            return { updated: new Date(updated), ...data };
+            return dataSources.diseases.getAll();
         } catch (error) {
-            throw error;
+            throw new ApolloError(error);
         }
     }
 

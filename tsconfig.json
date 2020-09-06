@@ -25,7 +25,8 @@
             "@entities/*": ["entities/*"],
             "@generated/*": ["generated/*"],
             "@resolvers/*": ["resolvers/*"],
-            "@utils/*": ["utils/*"]
+            "@utils/*": ["utils/*"],
+            "@datasources/*": ["datasources/*"]
         }
     },
     "exclude": ["node_modules"],

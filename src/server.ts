@@ -1,3 +1,4 @@
+import { DiseasesAPI } from '@datasources/diseases';
 import {
     DEFAULT_QUERY_COUNTRIES,
     DEFAULT_QUERY_COUNTRY,
@@ -26,6 +27,7 @@ export const createLocalServer = async () => {
 
     return new ApolloServer({
         schema,
+        dataSources: () => ({ diseases: new DiseasesAPI() }),
         context: ({ req }) => ({ req } as Context),
         uploads: false,
         playground: {
