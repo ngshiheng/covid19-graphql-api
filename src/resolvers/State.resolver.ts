@@ -1,3 +1,4 @@
+import { IDataSources } from '@datasources/diseases';
 import {
     State,
     StateFilterInput,
@@ -14,7 +15,7 @@ export class StateResolvers {
             'Get cases, new cases, deaths, new deaths, and active cases for a state',
     })
     async state(
-        @Ctx() { dataSources }: any,
+        @Ctx() { dataSources }: IDataSources,
         @Arg('name') name: string,
         @Args() filterBy: StateFilterInput,
     ): Promise<State> {
@@ -30,7 +31,7 @@ export class StateResolvers {
             'Get stats on United States of America States with COVID-19, including cases, new cases, deaths, new deaths, and active cases',
     })
     async states(
-        @Ctx() { dataSources }: any,
+        @Ctx() { dataSources }: IDataSources,
         @Args() sortBy: StateSortInput,
         @Args() filterBy: StateFilterInput,
     ): Promise<State[]> {

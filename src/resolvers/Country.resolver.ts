@@ -1,3 +1,4 @@
+import { IDataSources } from '@datasources/diseases';
 import {
     Country,
     CountryFilterInput,
@@ -15,7 +16,7 @@ export class CountryResolvers {
             'Get global stats: cases, deaths, recovered, time last updated, and active cases',
     })
     async globalTotal(
-        @Ctx() { dataSources }: any,
+        @Ctx() { dataSources }: IDataSources,
         @Args() filterBy: CountryFilterInput,
     ): Promise<Result> {
         try {
@@ -30,7 +31,7 @@ export class CountryResolvers {
             "Get the same data from the 'countries' query, but filter down to a specific country",
     })
     async country(
-        @Ctx() { dataSources }: any,
+        @Ctx() { dataSources }: IDataSources,
         @Arg('name') name: string,
         @Args() filterBy: CountryFilterInput,
     ): Promise<Country> {
@@ -46,7 +47,7 @@ export class CountryResolvers {
             'Returns a JSON array with an element for each country that has stats available. This includes iso codes, lat/long, a link to the country flag, cases, new cases, deaths, new deaths, recovered, active cases, critical cases, and cases/deaths per one million people',
     })
     async countries(
-        @Ctx() { dataSources }: any,
+        @Ctx() { dataSources }: IDataSources,
         @Args() sortBy: CountrySortInput,
         @Args() filterBy: CountryFilterInput,
     ): Promise<Country[]> {

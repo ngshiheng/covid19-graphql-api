@@ -14,11 +14,11 @@ import { resolve } from 'path';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 
-export interface Context {
+export interface IContext {
     req: Request;
 }
 
-export const createLocalServer = async () => {
+export const createLocalServer = async (): Promise<ApolloServer> => {
     const schema = await buildSchema({
         resolvers: [__dirname + '/resolvers/**/*.{ts,js}'],
         emitSchemaFile: resolve(__dirname, 'schemas/schema.gql'),
@@ -28,7 +28,7 @@ export const createLocalServer = async () => {
     return new ApolloServer({
         schema,
         dataSources: () => ({ diseases: new DiseasesAPI() }),
-        context: ({ req }) => ({ req } as Context),
+        context: ({ req }) => ({ req } as IContext),
         uploads: false,
         playground: {
             tabs: [
