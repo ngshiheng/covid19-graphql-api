@@ -3,6 +3,15 @@ import { StateFilterInput, StateSortInput } from '@entities/State.entity';
 import { DATA_SOURCE_URL } from '@utils/consts';
 import { RESTDataSource } from 'apollo-datasource-rest';
 
+// Roundabout way to adding type-safety to RESTDataSource - https://github.com/apollographql/apollo-server/issues/2652#issuecomment-495930502
+export interface IDiseaseAPI {
+    diseases: DiseasesAPI;
+}
+
+export interface IDataSources {
+    dataSources: IDiseaseAPI;
+}
+
 export class DiseasesAPI extends RESTDataSource {
     constructor() {
         super();
