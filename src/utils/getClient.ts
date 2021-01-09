@@ -2,7 +2,7 @@ import ApolloClient from 'apollo-boost';
 import { DEV_URL, PROD_URL } from './consts';
 
 const isDevelopment = (): Boolean => {
-    return process.env.NODE_ENV === 'development';
+    return process.env.NODE_ENV !== 'production';
 };
 
 export const getClient = (token?: string) => {
