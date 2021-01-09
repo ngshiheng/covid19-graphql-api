@@ -22,9 +22,9 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠀⠘⠳⠾⠛⠀⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ```
 
-## Source
+## Motive
 
--   https://github.com/disease-sh/API
+Front-end web and mobile developers often eager to reap the developer efficiency gains offered by [GraphQL](tps://graphql.org/) but they have years of momentum behind their REST API. This project aims to serve as an example of how you can easily build a GraphQL endpoint atop of an [existing REST API](https://github.com/disease-sh/API).
 
 ## Stacks
 
@@ -45,6 +45,10 @@
 ## Try it out on Netlify
 
 https://covid19-graphql.netlify.app/
+
+## Try it out on Insomnia Rest Client
+
+Import this `insomnia_data.json` [config](https://gist.github.com/ngshiheng/10415049ee8411a2d164d5cbd8d4a40b) file to your [Insomnia Rest Client](https://insomnia.rest/) workspace to try out this API.
 
 ## Contributing
 
