@@ -24,7 +24,7 @@
 
 ## Motive
 
-Front-end web and mobile developers often eager to reap the developer efficiency gains offered by [GraphQL](tps://graphql.org/) but they have years of momentum behind their REST API. This project aims to serve as an example of how you can easily build a GraphQL endpoint atop of an [existing REST API](https://github.com/disease-sh/API).
+Front-end web and mobile developers often eager to reap the developer efficiency gains offered by [GraphQL](https://graphql.org/) but they have years of momentum behind their REST API. This project aims to serve as an example of how you can easily build a GraphQL endpoint atop of an [existing REST API](https://github.com/disease-sh/API).
 
 ## Stacks
 
