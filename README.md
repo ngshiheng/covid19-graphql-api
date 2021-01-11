@@ -48,7 +48,13 @@ https://covid19-graphql.netlify.app/
 
 ## Try it out on Insomnia Rest Client
 
+**Option 1:**
+
 Import this `insomnia_data.json` [config](https://gist.github.com/ngshiheng/10415049ee8411a2d164d5cbd8d4a40b) file to your [Insomnia Rest Client](https://insomnia.rest/) workspace to try out this API.
+
+**Option 2:**
+
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=COVID-19%20GraphQL%20API%20Server%20%F0%9F%A6%A0&uri=https%3A%2F%2Fgist.githubusercontent.com%2Fngshiheng%2F10415049ee8411a2d164d5cbd8d4a40b%2Fraw%2F86b9ac813150992886b41ff36a9ab73477418bc5%2Finsomnia_data.json)
 
 ## Contributing
 
