@@ -47,6 +47,7 @@ const run = async (event, context) => {
         dataSources: () => ({
             diseases: new DiseasesAPI(),
         }),
+        context: (request) => request,
         introspection: true,
         plugins: [sentryIssuesPlugin, sentryPerformancePlugin],
         playground: {

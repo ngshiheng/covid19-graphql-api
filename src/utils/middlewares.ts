@@ -3,24 +3,40 @@ import { createRateLimitRule } from 'graphql-rate-limit';
 import { shield } from 'graphql-shield';
 
 // Get IP address from request headers
+const getIpAddress = (ctx: any) => {
+    let headers;
+    try {
+        headers = ctx.req.headers;
+    } catch {
+        headers = ctx.event.headers;
+    }
+
+    if (!headers) return '';
+
+    const ipAddress = headers['x-forwarded-for'];
+    if (ipAddress) return '';
+
+    return ipAddress;
+};
+
 const globalTotalRateLimitRule = createRateLimitRule({
-    identifyContext: (ctx) => ctx.req.headers['x-forwarded-for'],
+    identifyContext: (ctx) => getIpAddress(ctx),
 });
 
 const countryRateLimitRule = createRateLimitRule({
-    identifyContext: (ctx) => ctx.req.headers['x-forwarded-for'],
+    identifyContext: (ctx) => getIpAddress(ctx),
 });
 
 const countriesRateLimitRule = createRateLimitRule({
-    identifyContext: (ctx) => ctx.req.headers['x-forwarded-for'],
+    identifyContext: (ctx) => getIpAddress(ctx),
 });
 
 const stateRateLimitRule = createRateLimitRule({
-    identifyContext: (ctx) => ctx.req.headers['x-forwarded-for'],
+    identifyContext: (ctx) => getIpAddress(ctx),
 });
 
 const statesRateLimitRule = createRateLimitRule({
-    identifyContext: (ctx) => ctx.req.headers['x-forwarded-for'],
+    identifyContext: (ctx) => getIpAddress(ctx),
 });
 
 export const permissions = shield({
