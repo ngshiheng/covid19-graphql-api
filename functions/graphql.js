@@ -32,7 +32,7 @@ const run = async (event, context) => {
 
     Sentry.init({
         dsn: SENTRY_DSN,
-        environment: process.env.NODE_ENV,
+        environment: 'production',
         tracesSampleRate: 1.0,
     });
 
