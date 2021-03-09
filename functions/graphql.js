@@ -1,6 +1,6 @@
 require('reflect-metadata');
 const { DiseasesAPI } = require('./bundle/datasources/diseases');
-const { ApolloServer, ApolloError } = require('apollo-server-lambda');
+const { ApolloServer } = require('apollo-server-lambda');
 const { buildSchema } = require('type-graphql');
 const { CountryResolvers } = require('./bundle/resolvers/Country.resolver');
 const { StateResolvers } = require('./bundle/resolvers/State.resolver');
@@ -15,6 +15,10 @@ const {
     SENTRY_DSN,
 } = require('./bundle/utils/consts');
 const Sentry = require('@sentry/node');
+const {
+    sentryIssuesPlugin,
+    sentryPerformancePlugin,
+} = require('./bundle/utils/sentry');
 
 const endpoint = 'https://covid19-graphql.netlify.app/';
 
@@ -42,58 +46,7 @@ const run = async (event, context) => {
             diseases: new DiseasesAPI(),
         }),
         introspection: true,
-        plugins: [
-            {
-                requestDidStart(_) {
-                    /* Within this returned object, define functions that respond
-                   to request-specific lifecycle events. */
-                    return {
-                        didEncounterErrors(ctx) {
-                            // If we couldn't parse the operation, don't
-                            // do anything here
-                            if (!ctx.operation) {
-                                return;
-                            }
-
-                            for (const err of ctx.errors) {
-                                // Only report internal server errors,
-                                // all errors extending ApolloError should be user-facing
-                                if (err instanceof ApolloError) {
-                                    continue;
-                                }
-
-                                // Add scoped report details and send to Sentry
-                                Sentry.withScope((scope) => {
-                                    // Annotate whether failing operation was query/mutation/subscription
-                                    scope.setTag(
-                                        'kind',
-                                        ctx.operation.operation,
-                                    );
-
-                                    // Log query and variables as extras (make sure to strip out sensitive data!)
-                                    scope.setExtra('query', ctx.request.query);
-                                    scope.setExtra(
-                                        'variables',
-                                        ctx.request.variables,
-                                    );
-
-                                    if (err.path) {
-                                        // We can also add the path as breadcrumb
-                                        scope.addBreadcrumb({
-                                            category: 'query-path',
-                                            message: err.path.join(' > '),
-                                            level: Sentry.Severity.Debug,
-                                        });
-                                    }
-
-                                    Sentry.captureException(err);
-                                });
-                            }
-                        },
-                    };
-                },
-            },
-        ],
+        plugins: [sentryIssuesPlugin, sentryPerformancePlugin],
         playground: {
             tabs: [
                 {
