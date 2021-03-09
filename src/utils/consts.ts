@@ -4,6 +4,9 @@ export const PROD_URL = 'https://covid19-graphql.netlify.app/';
 
 export const DATA_SOURCE_URL = 'https://disease.sh/v3';
 
+export const SENTRY_DSN =
+    'https://a992c0706ba0469c94a0848832d057bf@o545253.ingest.sentry.io/5667425';
+
 export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has COVID-19
 {
     countries {
