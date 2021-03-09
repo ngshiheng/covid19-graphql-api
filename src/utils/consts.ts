@@ -7,6 +7,13 @@ export const DATA_SOURCE_URL = 'https://disease.sh/v3';
 export const SENTRY_DSN =
     'https://a992c0706ba0469c94a0848832d057bf@o545253.ingest.sentry.io/5667425';
 
+export const GLOBAL_RATE_LIMIT_CONFIG = {
+    window: '1m',
+    max: 10,
+    message:
+        'You have exceeded the rate limit! Don’t be afraid of taking the slow lane in life. It brings more happiness.',
+};
+
 export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has COVID-19
 {
     countries {

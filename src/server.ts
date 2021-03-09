@@ -10,9 +10,11 @@ import {
     DEFAULT_QUERY_STATES,
     SENTRY_DSN,
 } from '@utils/consts';
+import { permissions } from '@utils/middlewares';
 import { sentryIssuesPlugin, sentryPerformancePlugin } from '@utils/sentry';
 import { ApolloServer } from 'apollo-server';
 import { Request } from 'express';
+import { applyMiddleware } from 'graphql-middleware';
 import { resolve } from 'path';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
@@ -36,7 +38,7 @@ export const createLocalServer = async (): Promise<ApolloServer> => {
     });
 
     return new ApolloServer({
-        schema,
+        schema: applyMiddleware(schema, permissions),
         dataSources: () => ({ diseases: new DiseasesAPI() }),
         context: ({ req }) => ({ req } as IContext),
         uploads: false,

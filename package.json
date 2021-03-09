@@ -11,7 +11,7 @@
         "start:dev": "NODE_ENV=development nodemon -e ts -x ts-node -r tsconfig-paths/register src/index.ts",
         "build": "tsc --p tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./functions/bundle",
         "eslint": "eslint . --ext ts,gql --ignore-path .eslintignore",
-        "eslint:fix:": "eslint --fix . --ext ts,gql --ignore-path .eslintignore",
+        "eslint:fix": "eslint --fix . --ext ts,gql --ignore-path .eslintignore",
         "prettier": "prettier \"./**/*.{ts,yml,yaml}\" -l --ignore-path .eslintignore",
         "prettier:fix": "prettier \"./**/*.{ts,yml,yaml}\" --write --ignore-path .eslintignore",
         "test": "jest --detectOpenHandles --testTimeout 60000"

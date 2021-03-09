@@ -4,6 +4,8 @@ const { ApolloServer } = require('apollo-server-lambda');
 const { buildSchema } = require('type-graphql');
 const { CountryResolvers } = require('./bundle/resolvers/Country.resolver');
 const { StateResolvers } = require('./bundle/resolvers/State.resolver');
+const { applyMiddleware } = require('graphql-middleware');
+const { permissions } = require('./bundle/utils/middlewares');
 const {
     DEFAULT_QUERY_COUNTRIES,
     DEFAULT_QUERY_COUNTRY,
@@ -41,7 +43,7 @@ const run = async (event, context) => {
     });
 
     const server = new ApolloServer({
-        schema,
+        schema: applyMiddleware(schema, permissions),
         dataSources: () => ({
             diseases: new DiseasesAPI(),
         }),
