@@ -33,14 +33,23 @@ Front-end web and mobile developers often eager to reap the developer efficiency
 -   [typescript](https://www.typescriptlang.org/)
 -   [type-graphql](https://typegraphql.com/)
 -   [disease-sh-api](https://github.com/disease-sh/API)
+-   [sentry](https://sentry.io/)
 
 ## Local Usage
+
+### Without Netlify
 
 1. `yarn install`
 
 2. `yarn start`
 
 3. Start making queries!
+
+### With Netlify
+
+1. `netlify build`
+
+2. `netlify dev`
 
 ## Try it out on Netlify
 
@@ -55,6 +64,12 @@ Import this `insomnia_data.json` [config](https://gist.github.com/ngshiheng/1041
 **Option 2:**
 
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=COVID-19%20GraphQL%20API%20Server%20%F0%9F%A6%A0&uri=https%3A%2F%2Fgist.githubusercontent.com%2Fngshiheng%2F10415049ee8411a2d164d5cbd8d4a40b%2Fraw%2F86b9ac813150992886b41ff36a9ab73477418bc5%2Finsomnia_data.json)
+
+## Tests
+
+1. To run test suites locally, make sure your `NODE_ENV` is set to `development`.
+1. Run `yarn start` to start local development server
+1. Finally, run `yarn test` to run the tests
 
 ## Contributing
 
