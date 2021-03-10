@@ -40,7 +40,7 @@ const statesRateLimitRule = createRateLimitRule({
 });
 
 export const permissions = shield({
-    /*eslint-disable */
+    // eslint-disable-next-line
     Query: {
         globalTotal: globalTotalRateLimitRule(GLOBAL_RATE_LIMIT_CONFIG),
         country: countryRateLimitRule(GLOBAL_RATE_LIMIT_CONFIG),

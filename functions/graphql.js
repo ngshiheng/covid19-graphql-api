@@ -17,10 +17,7 @@ const {
     SENTRY_DSN,
 } = require('./bundle/utils/consts');
 const Sentry = require('@sentry/node');
-const {
-    sentryIssuesPlugin,
-    sentryPerformancePlugin,
-} = require('./bundle/utils/sentry');
+const { sentryPlugin } = require('./bundle/utils/sentry');
 
 const endpoint = 'https://covid19-graphql.netlify.app/';
 
@@ -42,6 +39,8 @@ const run = async (event, context) => {
         tracesSampleRate: 1.0,
     });
 
+    Sentry.setUser({ ip_address: '{{auto}}' });
+
     const server = new ApolloServer({
         schema: applyMiddleware(schema, permissions),
         dataSources: () => ({
@@ -49,7 +48,7 @@ const run = async (event, context) => {
         }),
         context: (request) => request,
         introspection: true,
-        plugins: [sentryIssuesPlugin, sentryPerformancePlugin],
+        plugins: [sentryPlugin],
         playground: {
             tabs: [
                 {
