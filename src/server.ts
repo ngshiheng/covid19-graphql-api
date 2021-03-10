@@ -35,6 +35,7 @@ export const createLocalServer = async (): Promise<ApolloServer> => {
         dsn: SENTRY_DSN,
         environment: process.env.NODE_ENV,
         tracesSampleRate: 1.0,
+        integrations: [new Sentry.Integrations.Http({ tracing: true })],
     });
 
     return new ApolloServer({

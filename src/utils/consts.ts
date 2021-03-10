@@ -161,7 +161,7 @@ query countries {
 
 export const DEFAULT_QUERY_GLOBAL = `# Returns global data
 query globalTotal {
-    globalTotal(filterBy: yesterday) {
+    globalTotal {
         affectedCountries
         tests
         cases
@@ -174,8 +174,11 @@ query globalTotal {
         casesPerOneMillion
         deathsPerOneMillion
         testsPerOneMillion
+        activePerOneMillion
+        recoveredPerOneMillion
+        criticalPerOneMillion
         updated
         population
     }
-}  
+} 
 `;
