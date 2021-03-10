@@ -41,7 +41,7 @@ Front-end web and mobile developers often eager to reap the developer efficiency
 
 1. `yarn install`
 
-2. `yarn start`
+2. `yarn start:dev`
 
 3. Start making queries!
 

@@ -4,7 +4,8 @@ import { PluginDefinition } from 'apollo-server-core';
 
 export const sentryPerformancePlugin: PluginDefinition = {
     requestDidStart: (ctx) => {
-        // Override transaction name with query/mutation name
+        // Override transaction name with query/mutation name.
+        // You'll need to send operationName along when making the query or mutation
         const scope = Sentry.getCurrentHub().getScope();
         if (scope && ctx.request.operationName) {
             scope.setTransactionName(ctx.request.operationName);

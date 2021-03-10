@@ -9,13 +9,13 @@ export const SENTRY_DSN =
 
 export const GLOBAL_RATE_LIMIT_CONFIG = {
     window: '1m',
-    max: 10,
+    max: 5,
     message:
         'You have exceeded the rate limit! Don’t be afraid of taking the slow lane in life. It brings more happiness.',
 };
 
 export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has COVID-19
-{
+query countries {
     countries {
         country
         countryInfo {
@@ -51,8 +51,8 @@ export const DEFAULT_QUERY_COUNTRIES = `# Returns data of all countries that has
 
 export const DEFAULT_QUERY_COUNTRY = `# Returns data of a specific country
 # Note that 'name:"<argument>"' argument could be: <country> || <_id> || <iso2> || <iso3>
-{
-    country(name:"Malaysia") {
+query country {
+    country(name: "Malaysia", filterBy: yesterday) {
         country
         countryInfo {
             _id
@@ -86,7 +86,7 @@ export const DEFAULT_QUERY_COUNTRY = `# Returns data of a specific country
 `;
 
 export const DEFAULT_QUERY_STATES = `# Returns data by states in the United States of America
-{
+query states {
     states {
         state
         result {
@@ -107,7 +107,7 @@ export const DEFAULT_QUERY_STATES = `# Returns data by states in the United Stat
 `;
 
 export const DEFAULT_QUERY_STATE = `# Returns data of a specific state in the United States of America
-{
+query state {
     state(name: "New York") {
         state
         result {
@@ -144,7 +144,7 @@ export const DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS = `# Returns data sort by co
 `;
 
 export const DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES = `# Returns data sort by country with the most cases
-{
+query countries {
     countries(sortBy: cases) {
         country
         continent
@@ -160,9 +160,8 @@ export const DEFAULT_QUERY_COUNTRY_WITH_MOST_CASES = `# Returns data sort by cou
 `;
 
 export const DEFAULT_QUERY_GLOBAL = `# Returns global data
-{
-    globalTotal {
-        population
+query globalTotal {
+    globalTotal(filterBy: yesterday) {
         affectedCountries
         tests
         cases
@@ -175,10 +174,8 @@ export const DEFAULT_QUERY_GLOBAL = `# Returns global data
         casesPerOneMillion
         deathsPerOneMillion
         testsPerOneMillion
-        activePerOneMillion
-        recoveredPerOneMillion
-        criticalPerOneMillion
         updated
+        population
     }
-}
+}  
 `;
