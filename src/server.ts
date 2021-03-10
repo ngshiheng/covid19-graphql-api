@@ -11,7 +11,7 @@ import {
     SENTRY_DSN,
 } from '@utils/consts';
 import { permissions } from '@utils/middlewares';
-import { sentryIssuesPlugin, sentryPerformancePlugin } from '@utils/sentry';
+import { sentryPlugin } from '@utils/sentry';
 import { ApolloServer } from 'apollo-server';
 import { Request } from 'express';
 import { applyMiddleware } from 'graphql-middleware';
@@ -38,12 +38,14 @@ export const createLocalServer = async (): Promise<ApolloServer> => {
         integrations: [new Sentry.Integrations.Http({ tracing: true })],
     });
 
+    Sentry.setUser({ ip_address: '{{auto}}' }); // eslint-disable-line
+
     return new ApolloServer({
         schema: applyMiddleware(schema, permissions),
         dataSources: () => ({ diseases: new DiseasesAPI() }),
         context: ({ req }) => ({ req } as IContext),
         uploads: false,
-        plugins: [sentryIssuesPlugin, sentryPerformancePlugin],
+        plugins: [sentryPlugin],
         playground: {
             tabs: [
                 {
