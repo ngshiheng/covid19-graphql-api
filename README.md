@@ -35,9 +35,9 @@ Front-end web and mobile developers often eager to reap the developer efficiency
 -   [disease-sh-api](https://github.com/disease-sh/API)
 -   [sentry](https://sentry.io/)
 
-## Local Usage
+## Local Development
 
-### Without Netlify
+### Node
 
 1. `yarn install`
 
@@ -45,7 +45,7 @@ Front-end web and mobile developers often eager to reap the developer efficiency
 
 3. Start making queries!
 
-### With Netlify
+### Netlify
 
 1. `netlify build`
 
@@ -53,9 +53,13 @@ Front-end web and mobile developers often eager to reap the developer efficiency
 
 3. Start making queries!
 
-## Try it out on Netlify
+## Try it live out on Netlify
 
 https://covid19-graphql.netlify.app/
+
+## Try it out with Insomnia
+
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Covid19%20GraphQL%20API&uri=https%3A%2F%2Fgist.githubusercontent.com%2Fngshiheng%2F5b298a6cd28cab5c5e35f6c7b7320a31%2Fraw%2Ffe000b28524c4af5ed456382cf5b72f31c5a05f0%2Fcovid19_graphql_api.json)
 
 ## Tests
 
