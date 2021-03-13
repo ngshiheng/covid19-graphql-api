@@ -11,6 +11,11 @@ export const sentryPlugin: PluginDefinition = {
             name: ctx.request.operationName,
         });
 
+        const scope = Sentry.getCurrentHub().getScope();
+        if (scope && ctx.request.operationName) {
+            scope.setTransactionName(ctx.request.operationName);
+        }
+
         return {
             willSendResponse(_) {
                 transaction.finish();
