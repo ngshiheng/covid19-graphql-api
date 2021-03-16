@@ -128,7 +128,7 @@ query state {
 `;
 
 export const DEFAULT_QUERY_COUNTRY_WITH_MOST_DEATHS = `# Returns data sort by country with the most deaths
-{
+query countries {
     countries(sortBy: deaths) {
         country
         continent
