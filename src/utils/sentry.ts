@@ -2,6 +2,7 @@ import * as Sentry from '@sentry/node';
 import { ApolloError } from 'apollo-server';
 import { PluginDefinition } from 'apollo-server-core';
 import { GraphQLRequestContext } from 'apollo-server-types';
+import gql from 'graphql-tag';
 
 export const sentryPlugin: PluginDefinition = {
     // https://www.apollographql.com/docs/apollo-server/integrations/plugins/#request-lifecycle-event-flow
@@ -12,8 +13,16 @@ export const sentryPlugin: PluginDefinition = {
         });
 
         const scope = Sentry.getCurrentHub().getScope();
-        if (scope && ctx.request.operationName) {
-            scope.setTransactionName(ctx.request.operationName);
+        if (scope) {
+            const query: any = gql`
+                ${ctx.request.query}
+            `;
+
+            const transactionName = ctx.request.operationName
+                ? ctx.request.operationName
+                : query.definitions[0].selectionSet.selections[0].name.value;
+
+            scope.setTransactionName(transactionName);
         }
 
         return {
