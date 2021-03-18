@@ -23,6 +23,10 @@ export const sentryPlugin: PluginDefinition = {
                 : query.definitions[0].selectionSet.selections[0].name.value;
 
             scope.setTransactionName(transactionName);
+
+            scope.setTag('kind', ctx.operation.operation);
+            scope.setExtra('query', ctx.request.query);
+            scope.setExtra('variables', ctx.request.variables);
         }
 
         return {
@@ -45,11 +49,6 @@ export const sentryPlugin: PluginDefinition = {
                     // Add scoped report details and send to Sentry
                     Sentry.withScope((scope) => {
                         // Annotate whether failing operation was query/mutation/subscription
-                        scope.setTag('kind', ctx.operation.operation);
-
-                        // Log query and variables as extras (make sure to strip out sensitive data!)
-                        scope.setExtra('query', ctx.request.query);
-                        scope.setExtra('variables', ctx.request.variables);
 
                         if (error.path) {
                             // We can also add the path as breadcrumb
