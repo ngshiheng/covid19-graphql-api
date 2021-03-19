@@ -24,7 +24,7 @@ export const sentryPlugin: PluginDefinition = {
 
             scope.setTransactionName(transactionName);
 
-            scope.setTag('kind', ctx.operation.operation);
+            scope.setTag('kind', 'query');
             scope.setExtra('query', ctx.request.query);
             scope.setExtra('variables', ctx.request.variables);
         }
