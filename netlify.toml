@@ -3,4 +3,3 @@
   functions = "functions"
 [build.environment]
   YARN_VERSION = "1.22.5"
-  NODE_ENV = "production"
