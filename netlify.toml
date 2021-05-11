@@ -2,4 +2,4 @@
   command = "yarn build"
   functions = "functions"
   NODE_ENV = "production"
-  YARN_VERSION = "v1.22.5"
+  YARN_VERSION = "1.22.5"
