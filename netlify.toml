@@ -1,5 +1,6 @@
 [build]
   command = "yarn build"
   functions = "functions"
-  NODE_ENV = "production"
+[build.environment]
   YARN_VERSION = "1.22.5"
+  NODE_ENV = "production"
