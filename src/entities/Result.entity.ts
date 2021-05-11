@@ -1,40 +1,42 @@
 import 'reflect-metadata';
-import { Field, Float, Int, ObjectType } from 'type-graphql';
+import { Field, Float, ObjectType } from 'type-graphql';
 
 @ObjectType({ description: 'Result object' })
 export class Result {
     @Field({ nullable: true, description: 'Last updated date' })
     updated?: Date;
 
-    @Field(() => Int, { description: 'Total number of confirmed cases' })
+    @Field(() => Float, { description: 'Total number of confirmed cases' })
     cases: number;
 
-    @Field(() => Int, {
+    @Field(() => Float, {
         description: 'Total number of confirmed cases reported today',
     })
     todayCases: number;
 
-    @Field(() => Int, { description: 'Total number of reported deaths' })
+    @Field(() => Float, { description: 'Total number of reported deaths' })
     deaths: number;
 
-    @Field(() => Int, { description: 'Total number of reported deaths today' })
+    @Field(() => Float, {
+        description: 'Total number of reported deaths today',
+    })
     todayDeaths: number;
 
-    @Field(() => Int, {
+    @Field(() => Float, {
         nullable: true,
         description: 'Total number of reported recovery',
     })
     recovered: number;
 
-    @Field(() => Int, {
+    @Field(() => Float, {
         description: 'Total number of recovered cases reported today',
     })
     todayRecovered: number;
 
-    @Field(() => Int, { description: 'Total number of active cases' })
+    @Field(() => Float, { description: 'Total number of active cases' })
     active: number;
 
-    @Field(() => Int, {
+    @Field(() => Float, {
         nullable: true,
         description: 'Total number of critical cases',
     })
@@ -52,7 +54,7 @@ export class Result {
     })
     deathsPerOneMillion?: number;
 
-    @Field(() => Int, {
+    @Field(() => Float, {
         nullable: true,
         description: 'Total number of tests conducted',
     })
@@ -88,7 +90,7 @@ export class Result {
     })
     criticalPerOneMillion?: number;
 
-    @Field(() => Int, {
+    @Field(() => Float, {
         nullable: true,
         description: 'Total number of affected countries',
     })

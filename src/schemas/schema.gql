@@ -118,28 +118,28 @@ type Query {
 """Result object"""
 type Result {
   """Total number of active cases"""
-  active: Int!
+  active: Float!
 
   """Active cases per one million"""
   activePerOneMillion: Float
 
   """Total number of affected countries"""
-  affectedCountries: Int
+  affectedCountries: Float
 
   """Total number of confirmed cases"""
-  cases: Int!
+  cases: Float!
 
   """Cases per one million"""
   casesPerOneMillion: Float
 
   """Total number of critical cases"""
-  critical: Int
+  critical: Float
 
   """Critical cases per one million"""
   criticalPerOneMillion: Float
 
   """Total number of reported deaths"""
-  deaths: Int!
+  deaths: Float!
 
   """Deaths per one million"""
   deathsPerOneMillion: Float
@@ -148,25 +148,25 @@ type Result {
   population: Float
 
   """Total number of reported recovery"""
-  recovered: Int
+  recovered: Float
 
   """Recovered cases per one million"""
   recoveredPerOneMillion: Float
 
   """Total number of tests conducted"""
-  tests: Int
+  tests: Float
 
   """Tests per one million"""
   testsPerOneMillion: Float
 
   """Total number of confirmed cases reported today"""
-  todayCases: Int!
+  todayCases: Float!
 
   """Total number of reported deaths today"""
-  todayDeaths: Int!
+  todayDeaths: Float!
 
   """Total number of recovered cases reported today"""
-  todayRecovered: Int!
+  todayRecovered: Float!
 
   """Last updated date"""
   updated: DateTime
