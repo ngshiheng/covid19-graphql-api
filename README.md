@@ -63,9 +63,8 @@ https://covid19-graphql.netlify.app/
 
 ## Tests
 
-1. To run test suites locally, make sure your `NODE_ENV` is set to `development`.
-1. Run `yarn start` to start local development server
-1. Finally, run `yarn test` to run the tests
+1. Run `yarn start:dev` to start local development server
+2. Finally, run `yarn test` to run the tests
 
 ## Contributing
 
