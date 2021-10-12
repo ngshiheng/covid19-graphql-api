@@ -1,4 +1,4 @@
-# COVID-19 GraphQL API Server 🦠
+# COVID-19 GraphQL API Server
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d9179aaa-940e-4bed-a029-a1621426c21b/deploy-status)](https://app.netlify.com/sites/covid19-graphql/deploys)
 [![CircleCI](https://circleci.com/gh/ngshiheng/covid19-graphql-api.svg?style=shield)](https://circleci.com/gh/ngshiheng/covid19-graphql-api/tree/master)
